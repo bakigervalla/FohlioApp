@@ -1,0 +1,11 @@
+e:\Program Files\Projects\fohlio-revit\RevitReportsIntegration\src\Services\bin\Debug\Fohlio.RevitReportsIntegration.Services.dll
+e:\Program Files\Projects\fohlio-revit\RevitReportsIntegration\src\Services\bin\Debug\Fohlio.RevitReportsIntegration.Services.pdb
+e:\Program Files\Projects\fohlio-revit\RevitReportsIntegration\src\Services\obj\Debug\Services.csprojAssemblyReference.cache
+e:\Program Files\Projects\fohlio-revit\RevitReportsIntegration\src\Services\obj\Debug\Services.csproj.CoreCompileInputs.cache
+e:\Program Files\Projects\fohlio-revit\RevitReportsIntegration\src\Services\obj\Debug\Fohlio.RevitReportsIntegration.Services.dll
+e:\Program Files\Projects\fohlio-revit\RevitReportsIntegration\src\Services\obj\Debug\Fohlio.RevitReportsIntegration.Services.pdb
+E:\Program Files\Projects\FohlioApp\Services\bin\Debug\Fohlio.RevitReportsIntegration.Services.dll
+E:\Program Files\Projects\FohlioApp\Services\bin\Debug\Fohlio.RevitReportsIntegration.Services.pdb
+E:\Program Files\Projects\FohlioApp\Services\obj\Debug\Services.csproj.CoreCompileInputs.cache
+E:\Program Files\Projects\FohlioApp\Services\obj\Debug\Fohlio.RevitReportsIntegration.Services.dll
+E:\Program Files\Projects\FohlioApp\Services\obj\Debug\Fohlio.RevitReportsIntegration.Services.pdb
