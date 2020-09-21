@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6A4069FA-A0B6-43AA-A62C-95A7F4E7E8EE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Fohlio.RevitReportsIntegration</RootNamespace>
+    <AssemblyName>Fohlio.RevitReportsIntegration</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="EPPlus, Version=5.3.2.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.5.3.2\lib\net45\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero2, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\PresentationFramework.Aero2.1.0.1\lib\PresentationFramework.Aero2.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.8.10.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.11.5\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.6.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.7\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.8.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.7\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\GlobalAssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Services\EventArguments\OperationProgressEventArgs.cs" />
+    <Compile Include="Services\EventArguments\OperationStartedEventArgs.cs" />
+    <Compile Include="Services\Implementation\MultiOperationProcessNotifier.cs" />
+    <Compile Include="Services\Implementation\PdfReportsSettingsDialog.cs" />
+    <Compile Include="Services\Implementation\RevitReportsWindowAdapter.cs" />
+    <Compile Include="Services\IMultiOperationProcessNotifier.cs" />
+    <Compile Include="Services\IPdfReportsSettingsDialog.cs" />
+    <Compile Include="Services\IReportsControlView.cs" />
+    <Compile Include="Utils\AppConfig.cs" />
+    <Compile Include="Utils\BitmapSourceConverter.cs" />
+    <Compile Include="Utils\Extensions\DoubleExtensions.cs" />
+    <Compile Include="Utils\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Utils\Extensions\EnumExtensions.cs" />
+    <Compile Include="Utils\Native\Win32Window.cs" />
+    <Compile Include="Utils\WindowOwnerUtil.cs" />
+    <Compile Include="ViewModel\AccountBrowserViewModel.cs" />
+    <Compile Include="ViewModel\BrowserState.cs" />
+    <Compile Include="ViewModel\CurrentActionBrowserViewModel.cs" />
+    <Compile Include="ViewModel\DialogViewModelBase.cs" />
+    <Compile Include="ViewModel\EventArguments\DialogCloseEventArgs.cs" />
+    <Compile Include="ViewModel\EventArguments\ImportReportsEventArgs.cs" />
+    <Compile Include="ViewModel\EventArguments\LaunchReportsImportRequestedEventArgs.cs" />
+    <Compile Include="ViewModel\EventArguments\LoginRequestedEventArgs.cs" />
+    <Compile Include="ViewModel\EventArguments\MainBrowserStateChangedEventArgs.cs" />
+    <Compile Include="ViewModel\EventArguments\PdfImportSettingsPromptEventArgs.cs" />
+    <Compile Include="ViewModel\EventArguments\SelectProjectEventArgs.cs" />
+    <Compile Include="ViewModel\LoginBrowserViewModel.cs" />
+    <Compile Include="ViewModel\MainBrowserViewModel.cs" />
+    <Compile Include="ViewModel\Mvvm\Converters\BitmapToImageSourceConverter.cs" />
+    <Compile Include="ViewModel\Mvvm\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="ViewModel\Mvvm\Converters\EnumBooleanConverter.cs" />
+    <Compile Include="ViewModel\Mvvm\Converters\EnumToVisibilityConverter.cs" />
+    <Compile Include="ViewModel\Mvvm\Converters\InversedBooleanConverter.cs" />
+    <Compile Include="ViewModel\Mvvm\IDialogViewModel.cs" />
+    <Compile Include="ViewModel\Mvvm\IExecuteWithObject.cs" />
+    <Compile Include="ViewModel\Mvvm\IExecuteWithObjectAndResult.cs" />
+    <Compile Include="ViewModel\Mvvm\IModalDialogWindow.cs" />
+    <Compile Include="ViewModel\Mvvm\ModalDialogWindow.cs" />
+    <Compile Include="ViewModel\Mvvm\RelayCommand.cs" />
+    <Compile Include="ViewModel\Mvvm\WeakAction.cs" />
+    <Compile Include="ViewModel\Mvvm\WeakFunc.cs" />
+    <Compile Include="ViewModel\PdfReportSettingsBrowserViewModel.cs" />
+    <Compile Include="ViewModel\PdfReportSettingsViewModel.cs" />
+    <Compile Include="ViewModel\ProjectsBrowserViewModel.cs" />
+    <Compile Include="ViewModel\ProjectViewModel.cs" />
+    <Compile Include="ViewModel\ReportsBrowserViewModel.cs" />
+    <Compile Include="ViewModel\ReportViewModel.cs" />
+    <Compile Include="ViewModel\TitleBlockViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="Views\AccountControl.xaml.cs">
+      <DependentUpon>AccountControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActionTitleControl.xaml.cs">
+      <DependentUpon>ActionTitleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BackgroundWorker\MultiOperationFormProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BackgroundWorker\MultiOperationFormProgress.Designer.cs">
+      <DependentUpon>MultiOperationFormProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BackgroundWorker\MultiOperationProgressBackgroundWorker.cs" />
+    <Compile Include="Views\BackgroundWorker\PersentageProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\BackgroundWorker\TextProgressStyle.cs" />
+    <Compile Include="Views\LoginControl.xaml.cs">
+      <DependentUpon>LoginControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LogoControl.xaml.cs">
+      <DependentUpon>LogoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PdfSettingsDialogWindow.xaml.cs">
+      <DependentUpon>PdfSettingsDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectsControl.xaml.cs">
+      <DependentUpon>ProjectsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RefreshControl.xaml.cs">
+      <DependentUpon>RefreshControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportsControl.xaml.cs">
+      <DependentUpon>ReportsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportsPane.xaml.cs">
+      <DependentUpon>ReportsPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportsWindow.xaml.cs">
+      <DependentUpon>ReportsWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Excel\ExcelCellBorderType.cs" />
+    <Compile Include="Entities\IFont.cs" />
+    <Compile Include="Entities\IReportContent.cs" />
+    <Compile Include="Entities\PixelsUtils.cs" />
+    <Compile Include="Entities\UpdateExistingReportsDialogResult.cs" />
+    <Compile Include="IoC\IoCContainer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BackgroundWorker\MultiOperationFormProgress.resx">
+      <DependentUpon>MultiOperationFormProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\Account.png" />
+    <None Include="Resources\Fohlio-16.png" />
+    <None Include="Resources\Fohlio-32.png" />
+    <None Include="Resources\FohlioLogo.png" />
+    <None Include="Resources\refresh.png" />
+    <None Include="Resources\Refresh_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\AccountControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ActionTitleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LoginControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LogoControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PdfSettingsDialogWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ProjectsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RefreshControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ReportsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ReportsPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ReportsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Resources\CheckBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Resources\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Resources\Converters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Resources\PasswordBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Resources\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Services.RestApi\Services.RestApi.csproj">
+      <Project>{f4c0bbb1-42bb-4896-9106-3701589c8f59}</Project>
+      <Name>Services.RestApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services.Serialization\Services.Serialization.csproj">
+      <Project>{4b961c55-2f92-4a83-bc26-450d19aaa819}</Project>
+      <Name>Services.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{16975502-7b5d-4416-a351-9bb477dda27b}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
