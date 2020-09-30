@@ -2,9 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Fohlio.RevitReportsIntegration.Views"
-             Height="600" Width="300" WindowStartupLocation="CenterScreen">
+             Height="600" Width="400" WindowStartupLocation="CenterScreen">
 
     <DockPanel x:Name="MainPane">
-        <local:ReportsPane Width="{Binding ActualWidth, ElementName=MainPane}" Margin="0,0,0,-161"/>
+        <local:ReportsPane Width="{Binding ActualWidth, ElementName=MainPane}" />
     </DockPanel>
 </Window>

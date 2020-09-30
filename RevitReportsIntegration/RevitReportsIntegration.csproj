@@ -126,6 +126,7 @@
     <Compile Include="ViewModel\AccountBrowserViewModel.cs" />
     <Compile Include="ViewModel\BrowserState.cs" />
     <Compile Include="ViewModel\CurrentActionBrowserViewModel.cs" />
+    <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\DialogViewModelBase.cs" />
     <Compile Include="ViewModel\EventArguments\DialogCloseEventArgs.cs" />
     <Compile Include="ViewModel\EventArguments\ImportReportsEventArgs.cs" />
@@ -174,6 +175,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Views\BackgroundWorker\TextProgressStyle.cs" />
+    <Compile Include="Views\DashboardControl.xaml.cs">
+      <DependentUpon>DashboardControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
@@ -246,6 +250,10 @@
     <Page Include="Views\ActionTitleControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginControl.xaml">
       <Generator>MSBuild:Compile</Generator>

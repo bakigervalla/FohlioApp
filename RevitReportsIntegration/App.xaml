@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:RevitReportsIntegration"
              StartupUri="Views/ReportsWindow.xaml">
     <Application.Resources>
-         
+        
+
+        
     </Application.Resources>
 </Application>

@@ -9,3 +9,4 @@ E:\Program Files\Projects\FohlioApp\Services\bin\Debug\Fohlio.RevitReportsIntegr
 E:\Program Files\Projects\FohlioApp\Services\obj\Debug\Services.csproj.CoreCompileInputs.cache
 E:\Program Files\Projects\FohlioApp\Services\obj\Debug\Fohlio.RevitReportsIntegration.Services.dll
 E:\Program Files\Projects\FohlioApp\Services\obj\Debug\Fohlio.RevitReportsIntegration.Services.pdb
+E:\Program Files\Projects\FohlioApp\Services\obj\Debug\Services.csprojAssemblyReference.cache

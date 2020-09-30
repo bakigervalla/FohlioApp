@@ -9,7 +9,9 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
     public class LoginBrowserViewModel : ViewModelBase
     {
         private static readonly Lazy<LoginBrowserViewModel> InstanceObj = new Lazy<LoginBrowserViewModel>(() => new LoginBrowserViewModel());
-        private string userName;
+        private string userName = "bakigervalla@gmail.com";
+
+        public ICommand LoginCommand { get; }
 
         private LoginBrowserViewModel()
         {
@@ -29,7 +31,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
             }
         } 
 
-        public ICommand LoginCommand { get; }
+        
 
         public event EventHandler<LoginRequestedEventArgs> LoginRequested;
 

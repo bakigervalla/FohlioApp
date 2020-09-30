@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Fohlio.RevitReportsIntegration.Views.DashboardControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fohlio.RevitReportsIntegration.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:vm="clr-namespace:Fohlio.RevitReportsIntegration.ViewModel"
+             mc:Ignorable="d" 
+              Style="{DynamicResource UserControlDialogStyle}"
+             DataContext="{Binding Source={x:Static vm:DashboardViewModel.Instance}}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="30 0" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border BorderThickness="3" BorderBrush="#ecedf0" CornerRadius="4">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.SwitchCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="revit"/>
+            </Border.InputBindings>
+        </Border>
+        <Grid  Height="80" Margin="30 0 30 0">
+            <ContentControl Content="{StaticResource DashboardRevitModuleIcon}" VerticalContentAlignment="Center" />
+        </Grid>
+
+        <Border Grid.Column="2" BorderThickness="3" BorderBrush="#ecedf0" CornerRadius="4">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.SwitchCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="reports"/>
+            </Border.InputBindings>
+        </Border>
+        <Grid  Grid.Column="2" Height="80" Margin="50">
+            <ContentControl Content="{StaticResource DashboardReportsModuleIcon}" VerticalContentAlignment="Center"  />
+        </Grid>
+
+    </Grid>
+
+</UserControl>

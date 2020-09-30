@@ -8,20 +8,22 @@
         <Setter Property="FontFamily" Value="Gotham"/>
     </Style>
 
+
+
     <Style TargetType="{x:Type TextBlock}" x:Key="Label">
         <Setter Property="FontFamily" Value="Gotham"/>
         <Setter Property="FontSize" Value="14px" />
         <Setter Property="Margin" Value="0,5" />
         <Setter Property="LineHeight" Value="13px"></Setter>
     </Style>
-    
+
     <Style TargetType="{x:Type TextBlock}" x:Key="ProjectLink">
         <Setter Property="FontSize" Value="14px" />
         <Setter Property="LineHeight" Value="13px"/>
         <Setter Property="Foreground" Value="#2775C3"/>
         <Setter Property="FontWeight" Value="Medium"/>
     </Style>
-    
+
     <Style TargetType="{x:Type TextBlock}" x:Key="EmptyReportList">
         <Setter Property="FontFamily" Value="Gotham"/>
         <Setter Property="FontSize" Value="14px" />
@@ -38,7 +40,7 @@
             </Style>
         </Style.Resources>
     </Style>
-    
+
     <Style TargetType="{x:Type PasswordBox}">
         <Style.Resources>
             <Style TargetType="{x:Type Border}">
@@ -101,7 +103,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <Style x:Key="ReportListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Focusable" Value="False"/>
     </Style>
@@ -132,4 +134,15 @@
         <Setter Property="TextDecorations" Value=""/>
         <Setter Property="FontSize" Value="10.5" />
     </Style>
+
+    <Style x:Key="StackPanel" TargetType="StackPanel">
+        <Setter Property="Background" Value="Red" />
+    </Style>
+
+    <!-- Revit -->
+
+    <Path x:Key="DashboardRevitModuleIcon" Fill="#56698a" Stretch="UniformToFill" Data="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z" />
+
+    <Path x:Key="DashboardReportsModuleIcon" Fill="#56698a" Stretch="UniformToFill" Data="M8,13H10.55V10H13.45V13H16L12,17L8,13M19.35,10.04C21.95,10.22 24,12.36 24,15A5,5 0 0,1 19,20H6A6,6 0 0,1 0,14C0,10.91 2.34,8.36 5.35,8.04C6.6,5.64 9.11,4 12,4C15.64,4 18.67,6.59 19.35,10.04M19,18A3,3 0 0,0 22,15C22,13.45 20.78,12.14 19.22,12.04L17.69,11.93L17.39,10.43C16.88,7.86 14.62,6 12,6C9.94,6 8.08,7.14 7.13,8.97L6.63,9.92L5.56,10.03C3.53,10.24 2,11.95 2,14A4,4 0 0,0 6,18H19Z" />
+
 </ResourceDictionary>

@@ -147,7 +147,14 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
                 accessToken = response.Data;
 
-                State = BrowserState.ProjectsList;
+                 State = BrowserState.ProjectsList;
+                //* State = BrowserState.Dashboard;
+
+                //var dashboardBrowser = DashboardViewModel.Instance;
+
+                //dashboardBrowser.Initialize(this);
+
+                
 
                 AccountBrowserViewModel.Instance.Authentificate(e.UserName);
             };

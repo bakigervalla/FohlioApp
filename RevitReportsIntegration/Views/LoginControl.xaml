@@ -58,5 +58,6 @@
                     Command="{Binding LoginCommand}"
                     CommandParameter="{Binding ElementName=PasswordBox}"/>
         </DockPanel>
+
     </Grid>
 </UserControl>

@@ -6,6 +6,9 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
         ProjectsList,
 
-        ReportsList
+        ReportsList,
+
+        Dashboard
+
     }
 }
