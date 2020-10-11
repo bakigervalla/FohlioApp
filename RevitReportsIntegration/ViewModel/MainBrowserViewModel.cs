@@ -53,6 +53,9 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
             var tasksBrowser = TasksViewModel.Instance;
             tasksBrowser.LunchTasks += OnSwitchTaskRequested;
 
+            var revitProjectsBrowser = RevitProjectsViewModel.Instance;
+            revitProjectsBrowser.LunchMapp += OnRevitProjectsBrowser;
+
             var projectsViewModel = RevitProjectsViewModel.Instance;
             projectsViewModel.RefreshProjectListRequested += OnRefreshProjectListRequested;
             projectsViewModel.Initialize(this);
@@ -342,6 +345,13 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
             State = ((string)sender) == "revit"
                 ? BrowserState.RevitProjects
                 : BrowserState.ProjectsList;
+        }
+
+        private void OnRevitProjectsBrowser(object sender, ProjectViewModel project)
+        {
+            MappViewModel.Instance.Initialize(project);
+
+            State = BrowserState.Mapp;
         }
 
     }

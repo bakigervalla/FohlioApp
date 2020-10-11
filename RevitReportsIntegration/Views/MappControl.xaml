@@ -36,46 +36,56 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-    <DockPanel Margin="20,0">
+        <TextBlock Text="{Binding Project.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Red" />
 
-        <DataGrid AutoGenerateColumns="False"
+        <DockPanel Margin="20,0" Grid.Row="1">
+
+            <DataGrid AutoGenerateColumns="False"
           Height="200" 
           HorizontalAlignment="Center" 
           Name="dataGrid1" 
           VerticalAlignment="Top" 
           Width="251" Margin="0,45,0,0">
 
-            <DataGrid.Resources>
-                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
-                    <Setter Property="Background" Value="#f5f7fa" />
-                    <Setter Property="Foreground" Value="Black" />
-                    <Setter Property="BorderBrush" Value="Black"/>
-                    <Setter Property="BorderThickness" Value="1 1 1 1"/>
-                    <Setter Property="Margin" Value="-1,-1,0,0" />
-                    <Setter Property="Height" Value="35" />
-                    <Setter Property="Width" Value="auto" />
-                    <Setter Property="Padding" Value="5" />
-                </Style>
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+                        <Setter Property="Background" Value="#f5f7fa" />
+                        <Setter Property="Foreground" Value="Black" />
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="1 1 1 1"/>
+                        <Setter Property="Margin" Value="-1,-1,0,0" />
+                        <Setter Property="Height" Value="35" />
+                        <Setter Property="Width" Value="auto" />
+                        <Setter Property="Padding" Value="5" />
+                    </Style>
 
-            </DataGrid.Resources>
+                </DataGrid.Resources>
 
 
-            <DataGrid.Columns >
-                <Custom:DataGridTemplateColumn x:Name="gdchk" Header="Export" MaxWidth="50" Width="*">
-                    <Custom:DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate>
-                            <CheckBox IsChecked="{Binding Path = Selected}" HorizontalAlignment="Center" Style="{DynamicResource myCheckBoxStyle}"/>
-                        </DataTemplate>
-                    </Custom:DataGridTemplateColumn.CellTemplate>
-                </Custom:DataGridTemplateColumn>
-                <DataGridTextColumn  Header="Family Category" Binding="{Binding Path=A}" Width="*" MinWidth="50" />
-                <DataGridComboBoxColumn Header="Fohlio Division" ItemsSource="{Binding Path=B}" 
+                <DataGrid.Columns >
+                    <Custom:DataGridTemplateColumn x:Name="gdchk" Header="Export" MaxWidth="50" Width="*">
+                        <Custom:DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path = Selected}" HorizontalAlignment="Center" Style="{DynamicResource myCheckBoxStyle}"/>
+                            </DataTemplate>
+                        </Custom:DataGridTemplateColumn.CellTemplate>
+                    </Custom:DataGridTemplateColumn>
+                    <DataGridTextColumn  Header="Family Category" Binding="{Binding Path=A}" Width="*" MinWidth="50" />
+                    <DataGridComboBoxColumn Header="Fohlio Division" ItemsSource="{Binding Path=B}" 
                                             SelectedItemBinding="{Binding SelectedStatus}" 
                                              />
 
-            </DataGrid.Columns>
-        </DataGrid>
+                </DataGrid.Columns>
+            </DataGrid>
 
-    </DockPanel>
+        </DockPanel>
+
+    </Grid>
+
 </UserControl>

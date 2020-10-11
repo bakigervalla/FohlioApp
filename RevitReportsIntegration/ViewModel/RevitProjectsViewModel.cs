@@ -16,7 +16,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
         private static readonly Lazy<RevitProjectsViewModel> InstanceObj = new Lazy<RevitProjectsViewModel>(() => new RevitProjectsViewModel());
         private readonly ObservableCollection<ProjectViewModel> projects = new ObservableCollection<ProjectViewModel>();
 
-        public event EventHandler<EventArgs> LunchMapp;
+        public event EventHandler<ProjectViewModel> LunchMapp;
 
         public static RevitProjectsViewModel Instance = InstanceObj.Value;
 
@@ -37,12 +37,12 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
         private void SelectProjectAndNavigateToMappPage(ProjectViewModel p)
         {
-            LunchMapp?.Invoke(p, EventArgs.Empty);
+            LunchMapp?.Invoke(this, p);
         }
 
         private void GoToMappPage()
         {
-            LunchMapp?.Invoke(SelectedProject, EventArgs.Empty);
+            LunchMapp?.Invoke(this, SelectedProject);
         }
 
         public void Initialize(MainBrowserViewModel mainBrowser)
