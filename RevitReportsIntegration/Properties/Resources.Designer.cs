@@ -272,6 +272,15 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next &gt;.
+        /// </summary>
+        public static string next {
+            get {
+                return ResourceManager.GetString("next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string Ok {
@@ -313,6 +322,15 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         public static string ProjectListActionPrompt {
             get {
                 return ResourceManager.GetString("ProjectListActionPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent Projects.
+        /// </summary>
+        public static string projects_RecentProjects {
+            get {
+                return ResourceManager.GetString("projects_RecentProjects", resourceCulture);
             }
         }
         
@@ -415,6 +433,33 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         public static string StorageEntitySchemaId {
             get {
                 return ResourceManager.GetString("StorageEntitySchemaId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a task.
+        /// </summary>
+        public static string task_ChooseTask {
+            get {
+                return ResourceManager.GetString("task_ChooseTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export to Fohlio.
+        /// </summary>
+        public static string task_ExportToFohlio {
+            get {
+                return ResourceManager.GetString("task_ExportToFohlio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert report.
+        /// </summary>
+        public static string task_InsertReport {
+            get {
+                return ResourceManager.GetString("task_InsertReport", resourceCulture);
             }
         }
         

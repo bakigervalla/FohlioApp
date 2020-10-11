@@ -52,6 +52,12 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
                 case BrowserState.ReportsList:
                     return Resources.ReportsListActionPrompt;
 
+                case BrowserState.Tasks:
+                    return Resources.task_ChooseTask;
+
+                case BrowserState.RevitProjects:
+                    return Resources.ProjectListActionPrompt;
+
                 default:
                     return string.Empty;
             }

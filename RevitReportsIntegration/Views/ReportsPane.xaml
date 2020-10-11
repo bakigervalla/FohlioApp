@@ -25,7 +25,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <local:ActionTitleControl Grid.Row="0" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}"/>
+        <local:ActionTitleControl Grid.Row="0" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}" />
 
         <Grid Grid.Row="1">
             <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.Login}}"
@@ -40,9 +40,17 @@
                        DockPanel.Dock="Top" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}">
                 <local:ReportsControl />
             </DockPanel>
-            <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.Dashboard}}"
+            <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.Tasks}}"
                        DockPanel.Dock="Top" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}">
-                <local:DashboardControl />
+                <local:TasksControl />
+            </DockPanel>
+            <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.RevitProjects}}"
+                       DockPanel.Dock="Top" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}">
+                <local:RevitProjectsControl/>
+            </DockPanel>            
+            <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.Mapp}}"
+                       DockPanel.Dock="Top" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}">
+                <local:MappControl/>
             </DockPanel>
         </Grid>
     </Grid>

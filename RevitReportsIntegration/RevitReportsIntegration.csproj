@@ -54,8 +54,14 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="DataGridExtensions, Version=2.4.5.0, Culture=neutral, PublicKeyToken=43de855f87de903a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataGridExtensions.2.4.5\lib\net45\DataGridExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus, Version=5.3.2.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.5.3.2\lib\net45\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero2, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\PresentationFramework.Aero2.1.0.1\lib\PresentationFramework.Aero2.dll</HintPath>
@@ -137,6 +143,7 @@
     <Compile Include="ViewModel\EventArguments\SelectProjectEventArgs.cs" />
     <Compile Include="ViewModel\LoginBrowserViewModel.cs" />
     <Compile Include="ViewModel\MainBrowserViewModel.cs" />
+    <Compile Include="ViewModel\MappViewModel.cs" />
     <Compile Include="ViewModel\Mvvm\Converters\BitmapToImageSourceConverter.cs" />
     <Compile Include="ViewModel\Mvvm\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModel\Mvvm\Converters\EnumBooleanConverter.cs" />
@@ -156,6 +163,8 @@
     <Compile Include="ViewModel\ProjectViewModel.cs" />
     <Compile Include="ViewModel\ReportsBrowserViewModel.cs" />
     <Compile Include="ViewModel\ReportViewModel.cs" />
+    <Compile Include="ViewModel\RevitProjectsViewModel.cs" />
+    <Compile Include="ViewModel\TasksViewModel.cs" />
     <Compile Include="ViewModel\TitleBlockViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Views\AccountControl.xaml.cs">
@@ -184,6 +193,9 @@
     <Compile Include="Views\LogoControl.xaml.cs">
       <DependentUpon>LogoControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MappControl.xaml.cs">
+      <DependentUpon>MappControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PdfSettingsDialogWindow.xaml.cs">
       <DependentUpon>PdfSettingsDialogWindow.xaml</DependentUpon>
     </Compile>
@@ -201,6 +213,12 @@
     </Compile>
     <Compile Include="Views\ReportsWindow.xaml.cs">
       <DependentUpon>ReportsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RevitProjectsControl.xaml.cs">
+      <DependentUpon>RevitProjectsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TasksControl.xaml.cs">
+      <DependentUpon>TasksControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -263,6 +281,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\MappControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PdfSettingsDialogWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -299,6 +321,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Resources\FlatComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Resources\PasswordBoxStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -306,6 +332,14 @@
     <Page Include="Views\Resources\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RevitProjectsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TasksControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

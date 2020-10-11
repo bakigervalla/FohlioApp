@@ -9,13 +9,16 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
     public class LoginBrowserViewModel : ViewModelBase
     {
         private static readonly Lazy<LoginBrowserViewModel> InstanceObj = new Lazy<LoginBrowserViewModel>(() => new LoginBrowserViewModel());
-        private string userName = "bakigervalla@gmail.com";
-
-        public ICommand LoginCommand { get; }
+        private string userName;
 
         private LoginBrowserViewModel()
         {
+#if DEBUG
+            LoginCommand = new RelayCommand<object>(LoginDebug);
+#else
             LoginCommand = new RelayCommand<object>(Login);
+
+#endif
         }
 
         public static LoginBrowserViewModel Instance = InstanceObj.Value;
@@ -29,9 +32,9 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
                 OnPropertyChanged();
             }
-        } 
+        }
 
-        
+        public ICommand LoginCommand { get; }
 
         public event EventHandler<LoginRequestedEventArgs> LoginRequested;
 
@@ -50,6 +53,11 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
             passwordBox.Password = string.Empty;
 
             LoginRequested?.Invoke(this, new LoginRequestedEventArgs(UserName, password));
+        }
+
+        private void LoginDebug(object pwdControl)
+        {
+            LoginRequested?.Invoke(this, new LoginRequestedEventArgs("bakigervalla@gmail.com", "orion857"));
         }
     }
 }

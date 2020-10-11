@@ -50,6 +50,13 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
             AccountBrowserViewModel.Instance.LogoutRequested += OnLogoutRequested;
 
+            var tasksBrowser = TasksViewModel.Instance;
+            tasksBrowser.LunchTasks += OnSwitchTaskRequested;
+
+            var projectsViewModel = RevitProjectsViewModel.Instance;
+            projectsViewModel.RefreshProjectListRequested += OnRefreshProjectListRequested;
+            projectsViewModel.Initialize(this);
+
             var container = new UnityContainer();
             var apiCaller = container.Resolve<FohlioApiCaller>();
             var serializer = container.Resolve<JsonSerializer>();
@@ -58,13 +65,11 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
             var serviceFactory = new FohlioServiceFactory(apiCaller, serializer);
 
-
-
             this.Initialize(serviceFactory);
         }
 
         public static MainBrowserViewModel Instance => InstanceObj.Value;
-        
+
         public BrowserState State
         {
             get { return state; }
@@ -147,14 +152,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
                 accessToken = response.Data;
 
-                 State = BrowserState.ProjectsList;
-                //* State = BrowserState.Dashboard;
-
-                //var dashboardBrowser = DashboardViewModel.Instance;
-
-                //dashboardBrowser.Initialize(this);
-
-                
+                State = BrowserState.Tasks;
 
                 AccountBrowserViewModel.Instance.Authentificate(e.UserName);
             };
@@ -164,7 +162,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
         private void OnRefreshProjectListRequested(object sender, EventArgs e)
         {
-            if (State != BrowserState.ProjectsList || accessToken == null)
+            if ((State != BrowserState.ProjectsList && State != BrowserState.RevitProjects) || accessToken == null)
                 return;
 
             IsBusy = true;
@@ -172,7 +170,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
             ServiceResponse<IEnumerable<Project>> response = null;
 
             var backgroundWorker = new BackgroundWorker();
-            
+
             backgroundWorker.DoWork += (o, args) =>
                 {
                     response = projectsService.FindProjects(accessToken);
@@ -190,7 +188,12 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
                     }
 
                     if (response.IsSuccess)
-                        ProjectsBrowserViewModel.Instance.Initialize(response.Data);
+                    {
+                        if (State == BrowserState.ProjectsList)
+                            ProjectsBrowserViewModel.Instance.Initialize(response.Data);
+                        else if (State == BrowserState.RevitProjects)
+                            RevitProjectsViewModel.Instance.Initialize(response.Data);
+                    }
                     else
                         ShowServiceCommunicationException(response.Message);
                 };
@@ -208,7 +211,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
             ServiceResponse<IEnumerable<Report>> response = null;
 
             var backgroundWorker = new BackgroundWorker();
-            
+
             backgroundWorker.DoWork += (o, args) =>
                 {
                     response = projectsService.FindReports(accessToken, e.Project);
@@ -230,7 +233,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 #if REVIT_2020
                         var reports = response.Data;
 #else
-                        var reports = response.Data.Where(x => x.Kind == ReportKind.Xlsx); 
+                        var reports = response.Data.Where(x => x.Kind == ReportKind.Xlsx);
 #endif
                         ReportsBrowserViewModel.Instance.Initialize(e.Project, reports);
 
@@ -239,7 +242,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
                     else
                         ShowServiceCommunicationException(response.Message);
                 };
-            
+
             backgroundWorker.RunWorkerAsync();
         }
 
@@ -319,19 +322,27 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
         private static void ShowServiceCommunicationException(string mainMessage, string extendedContent)
         {
-//            var dialog = new TaskDialog(Resources.ErrorDialogCaption)
-//                {
-//                    MainInstruction = mainMessage,
-//                    MainContent = extendedContent,
-//                    TitleAutoPrefix = false,
-//#if REVIT_2020 || REVIT_2019
-//                    MainIcon = TaskDialogIcon.TaskDialogIconError
-//#else
-//                    MainIcon = TaskDialogIcon.TaskDialogIconWarning
-//#endif
-//                };
+            //            var dialog = new TaskDialog(Resources.ErrorDialogCaption)
+            //                {
+            //                    MainInstruction = mainMessage,
+            //                    MainContent = extendedContent,
+            //                    TitleAutoPrefix = false,
+            //#if REVIT_2020 || REVIT_2019
+            //                    MainIcon = TaskDialogIcon.TaskDialogIconError
+            //#else
+            //                    MainIcon = TaskDialogIcon.TaskDialogIconWarning
+            //#endif
+            //                };
 
-//            dialog.Show();
+            //            dialog.Show();
         }
+
+        private void OnSwitchTaskRequested(object sender, EventArgs e)
+        {
+            State = ((string)sender) == "revit"
+                ? BrowserState.RevitProjects
+                : BrowserState.ProjectsList;
+        }
+
     }
 }

@@ -245,4 +245,19 @@ reports</value>
   <data name="Refresh_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Refresh_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="task_ExportToFohlio" xml:space="preserve">
+    <value>Export to Fohlio</value>
+  </data>
+  <data name="task_InsertReport" xml:space="preserve">
+    <value>Insert report</value>
+  </data>
+  <data name="task_ChooseTask" xml:space="preserve">
+    <value>Choose a task</value>
+  </data>
+  <data name="projects_RecentProjects" xml:space="preserve">
+    <value>Recent Projects</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Next &gt;</value>
+  </data>
 </root>

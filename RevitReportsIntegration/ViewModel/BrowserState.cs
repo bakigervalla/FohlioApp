@@ -8,7 +8,11 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
         ReportsList,
 
-        Dashboard
+        Tasks,
+
+        RevitProjects,
+
+        Mapp
 
     }
 }
