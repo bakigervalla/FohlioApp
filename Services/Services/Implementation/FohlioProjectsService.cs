@@ -27,8 +27,8 @@ namespace Fohlio.RevitReportsIntegration.Services.Services.Implementation
             var response = apiClient.CallApi(apiCallOptions);
 
             if (response.StatusCode != HttpStatusCode.OK)
-                return ServiceResponse<IEnumerable<Project>>.Fail(response.StatusCode,"Unknown server communication error occured", null);
-            
+                return ServiceResponse<IEnumerable<Project>>.Fail(response.StatusCode, "Unknown server communication error occured", null);
+
             var result = serializer.DeserializeArray(response.Content);
 
             var projects = new List<Project>();
@@ -84,7 +84,7 @@ namespace Fohlio.RevitReportsIntegration.Services.Services.Implementation
 
         private static ReportKind GetReportKind(dynamic report)
         {
-            var kind = (string) report.kind;
+            var kind = (string)report.kind;
 
             switch (kind)
             {
@@ -98,5 +98,46 @@ namespace Fohlio.RevitReportsIntegration.Services.Services.Implementation
                     return ReportKind.Unknown;
             }
         }
+
+
+        #region Export Fohlio
+
+        public ServiceResponse<IEnumerable<Division>> GetDivisions(AccessToken token, Project project)
+        {
+            var divisions = FetchDivisions(token, project).Data;
+
+            return ServiceResponse<IEnumerable<Division>>.Success(HttpStatusCode.OK, divisions);
+        }
+
+        private ServiceResponse<IReadOnlyCollection<Division>> FetchDivisions(AccessToken token, Project project)
+        {
+            var apiCallOptions = new ApiCallQuery("/openapi/divisions/project/{id}", ApiMethod.GET, "application/json");
+
+            apiCallOptions.AddHeaderParameter(new ApiParameter("Authorization", token.Token));
+
+            apiCallOptions.AddPathParameter(new ApiParameter("id", project.Id.ToString()));
+
+            var response = apiClient.CallApi(apiCallOptions);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                return ServiceResponse<IReadOnlyCollection<Division>>.Fail(response.StatusCode, "Unknown server communication error occured", null);
+
+            var result = serializer.DeserializeArray(response.Content);
+
+            var divisions = new List<Division>();
+
+            for (var i = 0; i < result.Count; ++i)
+            {
+                var division = result[i];
+
+                divisions.Add(new Division((int)division.id, (string)division.name, (string)division.code, (string)division.key, (dynamic)division.children));
+            }
+
+            return ServiceResponse<IReadOnlyCollection<Division>>.Success(HttpStatusCode.OK, divisions);
+        }
+
+        #endregion
+
+
     }
 }

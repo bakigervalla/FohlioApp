@@ -89,6 +89,7 @@
     <Compile Include="Entities\AccessToken.cs" />
     <Compile Include="Entities\ApiCalls\ApiParameter.cs" />
     <Compile Include="Entities\FohlioAuthentificationOptions.cs" />
+    <Compile Include="Entities\Division.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\ReportKind.cs" />

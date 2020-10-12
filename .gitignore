@@ -2,5 +2,8 @@ FohlioApp/obj
 RevitReportsIntegration/obj
 Services/obj
 Services/obj
-Services/obj/Debug/Services.csproj.FileListAbsolute.txt
+RevitReportsIntegration/bin/Debug/
+Services.RestApi/bin/Debug/
+Services/bin/Debug/
+Services/obj/
 .vs

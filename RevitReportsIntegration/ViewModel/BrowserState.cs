@@ -12,7 +12,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
         RevitProjects,
 
-        Mapp
+        Devisions
 
     }
 }

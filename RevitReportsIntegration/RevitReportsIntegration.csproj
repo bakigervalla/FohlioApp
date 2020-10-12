@@ -80,6 +80,7 @@
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -132,7 +133,6 @@
     <Compile Include="ViewModel\AccountBrowserViewModel.cs" />
     <Compile Include="ViewModel\BrowserState.cs" />
     <Compile Include="ViewModel\CurrentActionBrowserViewModel.cs" />
-    <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\DialogViewModelBase.cs" />
     <Compile Include="ViewModel\EventArguments\DialogCloseEventArgs.cs" />
     <Compile Include="ViewModel\EventArguments\ImportReportsEventArgs.cs" />
@@ -143,7 +143,7 @@
     <Compile Include="ViewModel\EventArguments\SelectProjectEventArgs.cs" />
     <Compile Include="ViewModel\LoginBrowserViewModel.cs" />
     <Compile Include="ViewModel\MainBrowserViewModel.cs" />
-    <Compile Include="ViewModel\MappViewModel.cs" />
+    <Compile Include="ViewModel\DivisionsViewModel.cs" />
     <Compile Include="ViewModel\Mvvm\Converters\BitmapToImageSourceConverter.cs" />
     <Compile Include="ViewModel\Mvvm\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModel\Mvvm\Converters\EnumBooleanConverter.cs" />
@@ -184,17 +184,14 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Views\BackgroundWorker\TextProgressStyle.cs" />
-    <Compile Include="Views\DashboardControl.xaml.cs">
-      <DependentUpon>DashboardControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LogoControl.xaml.cs">
       <DependentUpon>LogoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MappControl.xaml.cs">
-      <DependentUpon>MappControl.xaml</DependentUpon>
+    <Compile Include="Views\DivisionsControl.xaml.cs">
+      <DependentUpon>DivisionsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PdfSettingsDialogWindow.xaml.cs">
       <DependentUpon>PdfSettingsDialogWindow.xaml</DependentUpon>
@@ -269,10 +266,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\DashboardControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\LoginControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -281,7 +274,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MappControl.xaml">
+    <Page Include="Views\DivisionsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

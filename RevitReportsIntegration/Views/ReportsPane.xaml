@@ -48,9 +48,9 @@
                        DockPanel.Dock="Top" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}">
                 <local:RevitProjectsControl/>
             </DockPanel>            
-            <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.Mapp}}"
+            <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.Devisions}}"
                        DockPanel.Dock="Top" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}">
-                <local:MappControl/>
+                <local:DivisionsControl/>
             </DockPanel>
         </Grid>
     </Grid>

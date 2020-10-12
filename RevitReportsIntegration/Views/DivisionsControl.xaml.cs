@@ -18,9 +18,9 @@ namespace Fohlio.RevitReportsIntegration.Views
     /// <summary>
     /// Interaction logic for MappControl.xaml
     /// </summary>
-    public partial class MappControl : UserControl
+    public partial class DivisionsControl : UserControl
     {
-        public MappControl()
+        public DivisionsControl()
         {
             InitializeComponent();
         }

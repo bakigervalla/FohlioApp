@@ -55,10 +55,12 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
             var revitProjectsBrowser = RevitProjectsViewModel.Instance;
             revitProjectsBrowser.LunchMapp += OnRevitProjectsBrowser;
+            revitProjectsBrowser.RefreshProjectListRequested += OnRefreshProjectListRequested;
+            revitProjectsBrowser.Initialize(this);
 
-            var projectsViewModel = RevitProjectsViewModel.Instance;
-            projectsViewModel.RefreshProjectListRequested += OnRefreshProjectListRequested;
-            projectsViewModel.Initialize(this);
+            var divisionsViewModel = DivisionsViewModel.Instance;
+            divisionsViewModel.DivisionsRequested += OnDivisionsRequested;
+            
 
             var container = new UnityContainer();
             var apiCaller = container.Resolve<FohlioApiCaller>();
@@ -347,11 +349,47 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
                 : BrowserState.ProjectsList;
         }
 
-        private void OnRevitProjectsBrowser(object sender, ProjectViewModel project)
+        private void OnRevitProjectsBrowser(object sender, Project project)
         {
-            MappViewModel.Instance.Initialize(project);
+            State = BrowserState.Devisions;
 
-            State = BrowserState.Mapp;
+            DivisionsViewModel.Instance.Initialize(project);
+        }
+
+        private void OnDivisionsRequested(object sender, Project project)
+        {
+            if (State != BrowserState.Devisions || accessToken == null)
+                return;
+
+            IsBusy = true;
+
+            ServiceResponse<IEnumerable<Division>> response = null;
+
+            var backgroundWorker = new BackgroundWorker();
+
+            backgroundWorker.DoWork += (o, args) =>
+            {
+                response = projectsService.GetDivisions(accessToken, project);
+            };
+
+            backgroundWorker.RunWorkerCompleted += (o, args) =>
+            {
+                IsBusy = false;
+
+                if (response == null)
+                {
+                    ShowServiceCommunicationException(args.Error.Message);
+
+                    return;
+                }
+
+                if (response.IsSuccess)
+                        DivisionsViewModel.Instance.Initialize(response.Data);
+                else
+                    ShowServiceCommunicationException(response.Message);
+            };
+
+            backgroundWorker.RunWorkerAsync();
         }
 
     }

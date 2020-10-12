@@ -14,33 +14,33 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
     public class RevitProjectsViewModel : ViewModelBase
     {
         private static readonly Lazy<RevitProjectsViewModel> InstanceObj = new Lazy<RevitProjectsViewModel>(() => new RevitProjectsViewModel());
-        private readonly ObservableCollection<ProjectViewModel> projects = new ObservableCollection<ProjectViewModel>();
+        private readonly ObservableCollection<Project> projects = new ObservableCollection<Project>();
 
-        public event EventHandler<ProjectViewModel> LunchMapp;
+        public event EventHandler<Project> LunchMapp;
 
         public static RevitProjectsViewModel Instance = InstanceObj.Value;
 
-        public IEnumerable<ProjectViewModel> Projects => projects;
+        public IEnumerable<Project> Projects => projects;
 
         public event EventHandler RefreshProjectListRequested;
 
-        public ProjectViewModel SelectedProject { get; set; }
+        public Project SelectedProject { get; set; }
 
         public ICommand NextCommand { get; }
         public ICommand SelectProjectCommand { get; }
 
         private RevitProjectsViewModel()
         {
-            NextCommand = new RelayCommand(GoToMappPage);
-            SelectProjectCommand = new RelayCommand<ProjectViewModel>((p) => SelectProjectAndNavigateToMappPage(p));
+            NextCommand = new RelayCommand(GoToDevisionsPage);
+            SelectProjectCommand = new RelayCommand<Project>((p) => GoToDivisionPage(p));
         }
 
-        private void SelectProjectAndNavigateToMappPage(ProjectViewModel p)
+        private void GoToDivisionPage(Project p)
         {
             LunchMapp?.Invoke(this, p);
         }
 
-        private void GoToMappPage()
+        private void GoToDevisionsPage()
         {
             LunchMapp?.Invoke(this, SelectedProject);
         }
@@ -68,11 +68,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
         public void Initialize(IEnumerable<Project> userProjects)
         {
             foreach (var userProject in userProjects)
-            {
-                var viewModel = new ProjectViewModel(userProject);
-
-                projects.Add(viewModel);
-            }
+                projects.Add(userProject);
         }
 
 
