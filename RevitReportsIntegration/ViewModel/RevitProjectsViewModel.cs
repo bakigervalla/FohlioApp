@@ -16,33 +16,32 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
         private static readonly Lazy<RevitProjectsViewModel> InstanceObj = new Lazy<RevitProjectsViewModel>(() => new RevitProjectsViewModel());
         private readonly ObservableCollection<Project> projects = new ObservableCollection<Project>();
 
-        public event EventHandler<Project> LunchMapp;
-
         public static RevitProjectsViewModel Instance = InstanceObj.Value;
 
         public IEnumerable<Project> Projects => projects;
+        public Project SelectedProject { get; set; }
 
         public event EventHandler RefreshProjectListRequested;
-
-        public Project SelectedProject { get; set; }
+        public event EventHandler<Project> LaunchTasks;
 
         public ICommand NextCommand { get; }
         public ICommand SelectProjectCommand { get; }
 
         private RevitProjectsViewModel()
         {
-            NextCommand = new RelayCommand(GoToDevisionsPage);
-            SelectProjectCommand = new RelayCommand<Project>((p) => GoToDivisionPage(p));
+            NextCommand = new RelayCommand(GoToTasksPage);
+            SelectProjectCommand = new RelayCommand<Project>((p) => GoToTasksPage(p));
         }
 
-        private void GoToDivisionPage(Project p)
+        private void GoToTasksPage(Project p)
         {
-            LunchMapp?.Invoke(this, p);
+            LaunchTasks?.Invoke(this, p);
         }
 
-        private void GoToDevisionsPage()
+        private void GoToTasksPage()
         {
-            LunchMapp?.Invoke(this, SelectedProject);
+            if (SelectedProject != null)
+                LaunchTasks?.Invoke(this, SelectedProject);
         }
 
         public void Initialize(MainBrowserViewModel mainBrowser)

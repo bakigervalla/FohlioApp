@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using Fohlio.RevitReportsIntegration.Entities;
 using Fohlio.RevitReportsIntegration.Properties;
 using Fohlio.RevitReportsIntegration.Services;
@@ -11,6 +12,7 @@ using Fohlio.RevitReportsIntegration.Services.RestApi;
 using Fohlio.RevitReportsIntegration.Services.Serialization;
 using Fohlio.RevitReportsIntegration.Services.Services;
 using Fohlio.RevitReportsIntegration.ViewModel.EventArguments;
+using Fohlio.RevitReportsIntegration.ViewModel.Mvvm;
 using Unity;
 using Unity.Resolution;
 
@@ -26,9 +28,14 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
         private bool isBusy;
         private AccessToken accessToken;
 
+
+        public ICommand BackCommand { get; }
+
         private MainBrowserViewModel()
         {
             state = BrowserState.Login;
+
+            BackCommand = new RelayCommand(() => State--);
 
             LoginBrowserViewModel.Instance.LoginRequested += OnLoginRequested;
 
@@ -50,17 +57,22 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
             AccountBrowserViewModel.Instance.LogoutRequested += OnLogoutRequested;
 
-            var tasksBrowser = TasksViewModel.Instance;
-            tasksBrowser.LunchTasks += OnSwitchTaskRequested;
-
             var revitProjectsBrowser = RevitProjectsViewModel.Instance;
-            revitProjectsBrowser.LunchMapp += OnRevitProjectsBrowser;
+
             revitProjectsBrowser.RefreshProjectListRequested += OnRefreshProjectListRequested;
+
+            revitProjectsBrowser.LaunchTasks += OnLaunchTasks;
+
             revitProjectsBrowser.Initialize(this);
+
+            var tasksLuncher = TasksViewModel.Instance;
+            tasksLuncher.GoToModule += OnGoToModule;
+
+
 
             var divisionsViewModel = DivisionsViewModel.Instance;
             divisionsViewModel.DivisionsRequested += OnDivisionsRequested;
-            
+
 
             var container = new UnityContainer();
             var apiCaller = container.Resolve<FohlioApiCaller>();
@@ -157,7 +169,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
                 accessToken = response.Data;
 
-                State = BrowserState.Tasks;
+                State = BrowserState.RevitProjects;
 
                 AccountBrowserViewModel.Instance.Authentificate(e.UserName);
             };
@@ -342,19 +354,22 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
             //            dialog.Show();
         }
 
-        private void OnSwitchTaskRequested(object sender, EventArgs e)
+        private void OnGoToModule(object sender, Project project)
         {
-            State = ((string)sender) == "revit"
-                ? BrowserState.RevitProjects
+            State = ((Module)sender) == Module.Revit
+                ? BrowserState.Devisions
                 : BrowserState.ProjectsList;
-        }
-
-        private void OnRevitProjectsBrowser(object sender, Project project)
-        {
-            State = BrowserState.Devisions;
 
             DivisionsViewModel.Instance.Initialize(project);
         }
+
+        private void OnLaunchTasks(object sender, Project project)
+        {
+            State = BrowserState.Tasks;
+
+            TasksViewModel.Instance.Initialize(project);
+        }
+
 
         private void OnDivisionsRequested(object sender, Project project)
         {
@@ -384,7 +399,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
                 }
 
                 if (response.IsSuccess)
-                        DivisionsViewModel.Instance.Initialize(response.Data);
+                    DivisionsViewModel.Instance.Initialize(response.Data);
                 else
                     ShowServiceCommunicationException(response.Message);
             };

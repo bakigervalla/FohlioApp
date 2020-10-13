@@ -260,4 +260,10 @@ reports</value>
   <data name="next" xml:space="preserve">
     <value>Next &gt;</value>
   </data>
+  <data name="task_ExportDescription" xml:space="preserve">
+    <value>Pull product quantity, floors, room codes and room names from Revit</value>
+  </data>
+  <data name="task_ReportDescription" xml:space="preserve">
+    <value>Generate schedules using Fohlio.com and insert by one-click</value>
+  </data>
 </root>

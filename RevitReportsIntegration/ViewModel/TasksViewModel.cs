@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
+using Fohlio.RevitReportsIntegration.Services.Entities;
 using Fohlio.RevitReportsIntegration.ViewModel.Mvvm;
 
 namespace Fohlio.RevitReportsIntegration.ViewModel
@@ -11,16 +9,35 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
     {
 
         private static readonly Lazy<TasksViewModel> InstanceObj = new Lazy<TasksViewModel>(() => new TasksViewModel());
-        public event EventHandler<EventArgs> LunchTasks;
-        
-        public ICommand SwitchCommand { get; }
-
-        private TasksViewModel()
-        {
-            SwitchCommand = new RelayCommand<string>((p) => LunchTasks?.Invoke(p, EventArgs.Empty));
-        }
+        public event EventHandler<Project> GoToModule;
 
         public static TasksViewModel Instance = InstanceObj.Value;
 
+        private Project Project { get; set; }
+
+        public ICommand SwitchCommand { get; }
+        public ICommand NextCommand { get; }
+            
+        private Module _moduleType;
+        public Module ModuleType { get => _moduleType; set { _moduleType = value; OnPropertyChanged(nameof(ModuleType)); } }
+
+        private TasksViewModel()
+        {
+            SwitchCommand = new RelayCommand<int>( (p) => ModuleType = (Module)p);
+            NextCommand = new RelayCommand( Naviate);
+        }
+
+        private void Naviate()
+        {
+            if (ModuleType != Module.None)
+                GoToModule?.Invoke(ModuleType, Project);
+        }
+
+        public void Initialize(Project project)
+        {
+            Project = project;
+        }
     }
+
+
 }

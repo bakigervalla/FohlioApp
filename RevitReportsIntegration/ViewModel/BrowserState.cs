@@ -8,11 +8,21 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
         ReportsList,
 
-        Tasks,
-
         RevitProjects,
 
+        Tasks,
+        
         Devisions
 
     }
+
+    public enum Module
+    {
+        None,
+
+        Revit,
+
+        Reports
+    }
+
 }

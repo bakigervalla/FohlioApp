@@ -446,6 +446,15 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pull product quantity, floors, room codes and room names from Revit.
+        /// </summary>
+        public static string task_ExportDescription {
+            get {
+                return ResourceManager.GetString("task_ExportDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export to Fohlio.
         /// </summary>
         public static string task_ExportToFohlio {
@@ -460,6 +469,15 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         public static string task_InsertReport {
             get {
                 return ResourceManager.GetString("task_InsertReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate schedules using Fohlio.com and insert by one-click.
+        /// </summary>
+        public static string task_ReportDescription {
+            get {
+                return ResourceManager.GetString("task_ReportDescription", resourceCulture);
             }
         }
         

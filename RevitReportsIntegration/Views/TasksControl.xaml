@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Fohlio.RevitReportsIntegration.Views"
              xmlns:p="clr-namespace:Fohlio.RevitReportsIntegration.Properties"
              xmlns:vm="clr-namespace:Fohlio.RevitReportsIntegration.ViewModel"
+             xmlns:controls="clr-namespace:Fohlio.RevitReportsIntegration.Views"
              Style="{DynamicResource UserControlDialogStyle}"
              DataContext="{Binding Source={x:Static vm:TasksViewModel.Instance}}">
 
@@ -21,9 +22,10 @@
                 <Setter Property="BorderThickness" Value="1" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
                 <Setter Property="Height" Value="160" />
-                <Setter Property="Width" Value="140" />
+                <Setter Property="Width" Value="180" />
                 <Setter Property="VerticalAlignment" Value="Top" />
                 <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="Focusable" Value="False" />
             </Style>
             <Style x:Key="TaskLabel" TargetType="{x:Type Label}">
                 <Setter Property="HorizontalAlignment" Value="Center" />
@@ -36,34 +38,123 @@
                 <Setter Property="LineHeight" Value="15px"/>
                 <Setter Property="Foreground" Value="#59636D"/>
             </Style>
+            <Style x:Key="DescriptionTextBlock" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#666666" />
+                <Setter Property="Width" Value="150" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="Padding" Value="10 20 0 0" />
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid Margin="20,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="90" />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition  />
         </Grid.ColumnDefinitions>
 
-        <Border Style="{StaticResource BorderBox}">
-            <Button Background="Transparent" BorderThickness="0" Style="{x:Null}"
-                    Command="{Binding DataContext.SwitchCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="revit">
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <ContentControl Height="40" Content="{StaticResource DashboardRevitModuleIcon}" VerticalContentAlignment="Center" />
-                    <Label Content="{x:Static p:Resources.task_ExportToFohlio}" Style="{StaticResource TaskLabel}" />
-                </StackPanel>
-            </Button>
-        </Border>
+        <StackPanel Orientation="Vertical">
 
-        <Border Style="{StaticResource BorderBox}" Grid.Column="1">
-            <Button Background="Transparent" BorderThickness="0" Style="{x:Null}"
-                    Command="{Binding DataContext.SwitchCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="export">
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <ContentControl Height="35" Content="{StaticResource DashboardReportsModuleIcon}" VerticalContentAlignment="Center"  />
-                    <Label Content="{x:Static p:Resources.task_InsertReport}" Style="{StaticResource TaskLabel}" />
-                </StackPanel>
-            </Button>
-        </Border>
+            <Border>
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}" BasedOn="{StaticResource BorderBox}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=ModuleType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="{x:Static vm:Module.Revit}">
+                                <Setter Property="BorderBrush" Value="#2775C3" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=ModuleType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="{x:Static vm:Module.Reports}">
+                                <Setter Property="BorderBrush" Value="#FFEAEBEE" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
+                <Button Background="Transparent" BorderThickness="0" Style="{x:Null}"  Focusable="False"
+                    Command="{Binding DataContext.SwitchCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="1">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <ContentControl Focusable="False" Height="40" Content="{StaticResource DashboardRevitModuleIcon}" VerticalContentAlignment="Center" />
+                        <Label Content="{x:Static p:Resources.task_ExportToFohlio}" Style="{StaticResource TaskLabel}" />
+                    </StackPanel>
+                </Button>
+            </Border>
+
+            <TextBlock Text="{x:Static p:Resources.task_ExportDescription}">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource DescriptionTextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=ModuleType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="{x:Static vm:Module.Revit}">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=ModuleType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="{x:Static vm:Module.Reports}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Column="1">
+
+            <Border>
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}" BasedOn="{StaticResource BorderBox}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=ModuleType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="{x:Static vm:Module.Reports}">
+                                <Setter Property="BorderBrush" Value="#2775C3" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=ModuleType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="{x:Static vm:Module.Revit}">
+                                <Setter Property="BorderBrush" Value="#FFEAEBEE" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
+                <Button Background="Transparent" BorderThickness="0" Style="{x:Null}" Focusable="False"
+                    Command="{Binding DataContext.SwitchCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="2">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <ContentControl Focusable="False" Height="35" Content="{StaticResource DashboardReportsModuleIcon}" VerticalContentAlignment="Center"  />
+                        <Label Content="{x:Static p:Resources.task_InsertReport}" Style="{StaticResource TaskLabel}" />
+                    </StackPanel>
+                </Button>
+            </Border>
+
+            <TextBlock Text="{x:Static p:Resources.task_ReportDescription}">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource DescriptionTextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=ModuleType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="{x:Static vm:Module.Reports}">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=ModuleType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="{x:Static vm:Module.Revit}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" 
+                    Margin="0,10,0,5" HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+
+            <controls:BackControl />
+            <!--<TextBlock Style="{StaticResource BackHyperlink}" Text="{x:Static p:Resources.GoBackPrompt}">
+                <Hyperlink Command="{Binding DataContext.BackCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+            </TextBlock>-->
+
+            <Button Content="{x:Static p:Resources.next}" Width="140"
+                    Command="{Binding DataContext.NextCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+        </StackPanel>
 
     </Grid>
 
