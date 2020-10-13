@@ -7,6 +7,8 @@
              xmlns:vm="clr-namespace:Fohlio.RevitReportsIntegration.ViewModel"
              xmlns:Custom="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:p="clr-namespace:Fohlio.RevitReportsIntegration.Properties"
+             xmlns:controls="clr-namespace:Fohlio.RevitReportsIntegration.Views"
              Style="{DynamicResource UserControlDialogStyle}"
              DataContext="{Binding Source={x:Static vm:DivisionsViewModel.Instance}}">
 
@@ -42,24 +44,19 @@
             <i:InvokeCommandAction Command="{Binding OnLoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>-->
-    
-    <Grid>
+
+    <Grid Margin="20,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="90" />
         </Grid.RowDefinitions>
 
         <TextBlock Text="{Binding Project.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Red" />
 
-        <DockPanel Margin="20,0" Grid.Row="1">
+        <DockPanel>
 
-            <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Divisions, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-          Height="200" 
-          HorizontalAlignment="Center" 
-          Name="dataGrid1" 
-          VerticalAlignment="Top" 
-          Width="251" Margin="0,45,0,0">
-
+            <DataGrid ItemsSource="{Binding Divisions, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
                         <Setter Property="Background" Value="#f5f7fa" />
@@ -71,28 +68,44 @@
                         <Setter Property="Width" Value="auto" />
                         <Setter Property="Padding" Value="5" />
                     </Style>
-
                 </DataGrid.Resources>
 
-
                 <DataGrid.Columns >
-                    <Custom:DataGridTemplateColumn x:Name="gdchk" Header="Export" MaxWidth="50" Width="*">
+                    <Custom:DataGridTemplateColumn Header="{x:Static p:Resources.export}" Width="50">
                         <Custom:DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding Path = Selected}" HorizontalAlignment="Center" Style="{DynamicResource myCheckBoxStyle}"/>
+                                <CheckBox IsChecked="{Binding Path=Selected}" HorizontalAlignment="Center" Style="{DynamicResource myCheckBoxStyle}"/>
                             </DataTemplate>
                         </Custom:DataGridTemplateColumn.CellTemplate>
                     </Custom:DataGridTemplateColumn>
-                    <DataGridTextColumn  Header="Family Category" Binding="{Binding Path=A}" Width="*" MinWidth="50" />
-                    <DataGridComboBoxColumn Header="Fohlio Division" ItemsSource="{Binding Path=B}" 
-                                            SelectedItemBinding="{Binding SelectedStatus}" 
-                                             />
+                    <DataGridTextColumn Header="{x:Static p:Resources.div_RevitParameter}" Binding="{Binding Path=Name}" />
+                    <DataGridComboBoxColumn Header="{x:Static p:Resources.div_FohlioParameter}"
+                                            ItemsSource="{Binding DataContext.Divisions, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" SelectedItemBinding="{Binding SelectedStatus}" />
 
                 </DataGrid.Columns>
             </DataGrid>
 
         </DockPanel>
 
-    </Grid>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" 
+                    Margin="0,10,0,5" HorizontalAlignment="Right"
+                    Orientation="Horizontal">
 
+            <TextBlock Style="{StaticResource BackHyperlink}" Text="{x:Static p:Resources.Cancel}">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseLeftButtonUp">
+                <i:InvokeCommandAction Command="{Binding DataContext.BackCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+            </TextBlock>
+            
+            <!--<controls:BackControl />-->
+
+            <Button Content="{x:Static p:Resources.Continue}" Width="140"
+                    Command="{Binding DataContext.NextCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+        </StackPanel>
+    
+    </Grid>
+    
 </UserControl>

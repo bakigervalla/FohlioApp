@@ -266,4 +266,16 @@ reports</value>
   <data name="task_ReportDescription" xml:space="preserve">
     <value>Generate schedules using Fohlio.com and insert by one-click</value>
   </data>
+  <data name="div_FohlioParameter" xml:space="preserve">
+    <value>Fohlio Parameter</value>
+  </data>
+  <data name="div_RevitParameter" xml:space="preserve">
+    <value>Revit Parameter</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue &gt;</value>
+  </data>
 </root>

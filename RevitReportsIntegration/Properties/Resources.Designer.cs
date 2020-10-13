@@ -134,6 +134,33 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue &gt;.
+        /// </summary>
+        public static string Continue {
+            get {
+                return ResourceManager.GetString("Continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fohlio Parameter.
+        /// </summary>
+        public static string div_FohlioParameter {
+            get {
+                return ResourceManager.GetString("div_FohlioParameter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revit Parameter.
+        /// </summary>
+        public static string div_RevitParameter {
+            get {
+                return ResourceManager.GetString("div_RevitParameter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fohlio reports.
         /// </summary>
         public static string DockablePaneTitle {
@@ -175,6 +202,15 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         public static string ErrorDialogCaption {
             get {
                 return ResourceManager.GetString("ErrorDialogCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string export {
+            get {
+                return ResourceManager.GetString("export", resourceCulture);
             }
         }
         

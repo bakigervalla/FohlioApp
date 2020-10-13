@@ -40,9 +40,11 @@
             </Style>
             <Style x:Key="DescriptionTextBlock" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="#666666" />
-                <Setter Property="Width" Value="150" />
+                <Setter Property="Width" Value="160" />
                 <Setter Property="TextWrapping" Value="Wrap" />
                 <Setter Property="Padding" Value="10 20 0 0" />
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="LineHeight" Value="15px"/>
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -148,9 +150,6 @@
                     Orientation="Horizontal">
 
             <controls:BackControl />
-            <!--<TextBlock Style="{StaticResource BackHyperlink}" Text="{x:Static p:Resources.GoBackPrompt}">
-                <Hyperlink Command="{Binding DataContext.BackCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
-            </TextBlock>-->
 
             <Button Content="{x:Static p:Resources.next}" Width="140"
                     Command="{Binding DataContext.NextCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
