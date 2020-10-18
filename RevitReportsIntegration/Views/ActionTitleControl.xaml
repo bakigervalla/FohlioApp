@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Fohlio.RevitReportsIntegration.Views"
              xmlns:vm="clr-namespace:Fohlio.RevitReportsIntegration.ViewModel"
              xmlns:p="clr-namespace:Fohlio.RevitReportsIntegration.Properties"
+             xmlns:conv="clr-namespace:Fohlio.RevitReportsIntegration.ViewModel.Mvvm.Converters"
              mc:Ignorable="d" 
              d:DesignWidth="300"
              Style="{DynamicResource UserControlDialogStyle}"
@@ -17,6 +18,8 @@
                 <ResourceDictionary Source="Resources/Styles.xaml" />
                 <ResourceDictionary Source="Resources/Converters.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <conv:NullVisibilityConverter x:Key="NullVisibilityConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     
@@ -54,7 +57,11 @@
                     </Hyperlink>
                 </TextBlock>
             </DockPanel>
-            <TextBlock Text="{Binding ActionTitle}" FontFamily="Gotham" FontSize="16px" Margin="21,14,0,0" LineHeight="15px" FontWeight="Medium"/>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding ActionTitle}" FontFamily="Gotham" FontSize="16px" Margin="21,14,0,0"  FontWeight="Medium"/>
+                <TextBlock Text="{Binding DescriptionText}" FontFamily="Gotham" FontSize="13px" Margin="21,5,0,0" 
+                           Visibility="{Binding DescriptionText,Converter={StaticResource NullVisibilityConverter}}" />
+            </StackPanel>
         </DockPanel>
     </Grid>
 </UserControl>

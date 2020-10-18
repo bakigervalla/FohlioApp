@@ -47,10 +47,18 @@
             <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.RevitProjects}}"
                        DockPanel.Dock="Top" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}">
                 <local:RevitProjectsControl/>
-            </DockPanel>            
-            <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.Devisions}}"
+            </DockPanel>
+            <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.Categories}}"
                        DockPanel.Dock="Top" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}">
-                <local:DivisionsControl/>
+                <local:CategoriesControl/>
+            </DockPanel>
+            <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.Families}}"
+                       DockPanel.Dock="Top" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}">
+                <local:FamiliesControl/>
+            </DockPanel>
+            <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.Parameters}}"
+                       DockPanel.Dock="Top" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}">
+                <local:ParametersControl/>
             </DockPanel>
         </Grid>
     </Grid>

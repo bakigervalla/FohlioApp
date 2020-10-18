@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Fohlio.RevitReportsIntegration.Views"
              xmlns:p="clr-namespace:Fohlio.RevitReportsIntegration.Properties"
              xmlns:vm="clr-namespace:Fohlio.RevitReportsIntegration.ViewModel"
-             xmlns:controls="clr-namespace:Fohlio.RevitReportsIntegration.Views"
+             xmlns:cnt="clr-namespace:Fohlio.RevitReportsIntegration.Controls"
              Style="{DynamicResource UserControlDialogStyle}"
              DataContext="{Binding Source={x:Static vm:TasksViewModel.Instance}}">
 
@@ -149,7 +149,7 @@
                     Margin="0,10,0,5" HorizontalAlignment="Right"
                     Orientation="Horizontal">
 
-            <controls:BackControl />
+            <cnt:BackControl />
 
             <Button Content="{x:Static p:Resources.next}" Width="140"
                     Command="{Binding DataContext.NextCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />

@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="Fohlio.RevitReportsIntegration.Views.FamiliesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fohlio.RevitReportsIntegration.Views"
+             xmlns:Custom="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:p="clr-namespace:Fohlio.RevitReportsIntegration.Properties"
+             xmlns:cnt="clr-namespace:Fohlio.RevitReportsIntegration.Controls"
+             xmlns:dgx="urn:tom-englert.de/DataGridExtensions"
+             xmlns:vm="clr-namespace:Fohlio.RevitReportsIntegration.ViewModel"
+             Style="{DynamicResource UserControlDialogStyle}"
+             DataContext="{Binding Source={x:Static vm:FamiliesViewModel.Instance}}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles.xaml" />
+                <ResourceDictionary Source="Resources/CheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="Resources/DataGridComboBoxStyle.xaml" />
+                <ResourceDictionary Source="Resources/DataGridStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <ControlTemplate x:Key="MultipleChoiceFilter">
+                <cnt:MultipleChoiceFilter Filter="{Binding Path=Filter, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=dgx:DataGridFilterColumnControl}}"/>
+            </ControlTemplate>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="20,0" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="90" />
+        </Grid.RowDefinitions>
+
+        <DockPanel>
+            <DataGrid ItemsSource="{Binding Families, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto"
+                      dgx:DataGridFilter.IsAutoFilterEnabled="True" RowHeaderWidth="0"
+                      GridLinesVisibility="None">
+                <DataGrid.Columns >
+                    <Custom:DataGridTemplateColumn Header="{x:Static p:Resources.export}" Width="85"
+                                                   dgx:DataGridFilterColumn.Template="{StaticResource MultipleChoiceFilter}">
+                        <Custom:DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Selected}" HorizontalAlignment="Center" Style="{DynamicResource myCheckBoxStyle}"/>
+                            </DataTemplate>
+                        </Custom:DataGridTemplateColumn.CellTemplate>
+                    </Custom:DataGridTemplateColumn>
+                    <DataGridTextColumn Header="{x:Static p:Resources.div_RevitParameter}" Binding="{Binding Path=Name}" Width="*"
+                                        dgx:DataGridFilterColumn.Template="{StaticResource MultipleChoiceFilter}" />
+
+                    <Custom:DataGridTemplateColumn Header="{x:Static p:Resources.div_FohlioParameter}" Width="*"
+                                                   dgx:DataGridFilterColumn.Template="{StaticResource MultipleChoiceFilter}">
+                        <Custom:DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding DataContext.Families, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, 
+                                          RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                                          SelectedValuePath="Id" DisplayMemberPath="Name" IsEditable="True"
+                                          HorizontalAlignment="Stretch" />
+                            </DataTemplate>
+                        </Custom:DataGridTemplateColumn.CellTemplate>
+                    </Custom:DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+        <StackPanel Orientation="Horizontal" Height="40" Grid.Row="1">
+            <ContentControl Focusable="False" Content="{StaticResource InfoIcon}" Height="13" />
+            <Label Content="{x:Static p:Resources.QTYInfo}" VerticalAlignment="Center" FontSize="12px" FontWeight="DemiBold" Foreground="#404040" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Margin="0,10,0,5" HorizontalAlignment="Right" Orientation="Horizontal">
+ 
+            <cnt:BackControl />
+
+            <Button Content="{x:Static p:Resources.Continue}" Width="140"
+                    Command="{Binding DataContext.NextCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+
+        </StackPanel>
+
+    </Grid>
+
+</UserControl>

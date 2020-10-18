@@ -102,6 +102,41 @@ namespace Fohlio.RevitReportsIntegration.Services.Services.Implementation
 
         #region Export Fohlio
 
+        public ServiceResponse<IEnumerable<Parameter>> GetParameters(AccessToken token, Project project)
+        {
+            var parameters = FetchParameters(token, project).Data;
+
+            return ServiceResponse<IEnumerable<Parameter>>.Success(HttpStatusCode.OK, parameters);
+        }
+
+        private ServiceResponse<IReadOnlyCollection<Parameter>> FetchParameters(AccessToken token, Project project)
+        {
+            // var apiCallOptions = new ApiCallQuery("/openapi/projects/{id}/items", ApiMethod.GET, "application/json");
+            var apiCallOptions = new ApiCallQuery("/openapi/divisions/project/{id}", ApiMethod.GET, "application/json");
+
+            apiCallOptions.AddHeaderParameter(new ApiParameter("Authorization", token.Token));
+
+            apiCallOptions.AddPathParameter(new ApiParameter("id", project.Id.ToString()));
+
+            var response = apiClient.CallApi(apiCallOptions);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                return ServiceResponse<IReadOnlyCollection<Parameter>>.Fail(response.StatusCode, "Unknown server communication error occured", null);
+
+            var result = serializer.DeserializeArray(response.Content);
+
+            var parameters = new List<Parameter>();
+
+            for (var i = 0; i < result.Count; ++i)
+            {
+                var parameter = result[i];
+
+                parameters.Add(new Parameter((int)parameter.id, (string)parameter.name, (string)parameter.code, (string)parameter.key, (dynamic)parameter.children));
+            }
+
+            return ServiceResponse<IReadOnlyCollection<Parameter>>.Success(HttpStatusCode.OK, parameters);
+        }
+
         public ServiceResponse<IEnumerable<Division>> GetDivisions(AccessToken token, Project project)
         {
             var divisions = FetchDivisions(token, project).Data;
@@ -116,7 +151,7 @@ namespace Fohlio.RevitReportsIntegration.Services.Services.Implementation
             apiCallOptions.AddHeaderParameter(new ApiParameter("Authorization", token.Token));
 
             apiCallOptions.AddPathParameter(new ApiParameter("id", project.Id.ToString()));
-
+            
             var response = apiClient.CallApi(apiCallOptions);
 
             if (response.StatusCode != HttpStatusCode.OK)
@@ -134,6 +169,40 @@ namespace Fohlio.RevitReportsIntegration.Services.Services.Implementation
             }
 
             return ServiceResponse<IReadOnlyCollection<Division>>.Success(HttpStatusCode.OK, divisions);
+        }
+
+        public ServiceResponse<IEnumerable<Column>> GetColumns(AccessToken token, Project project)
+        {
+            var columns = FetchColumns(token, project).Data;
+
+            return ServiceResponse<IEnumerable<Column>>.Success(HttpStatusCode.OK, columns);
+        }
+
+        private ServiceResponse<IReadOnlyCollection<Column>> FetchColumns(AccessToken token, Project project)
+        {
+            var apiCallOptions = new ApiCallQuery("/openapi/columns/project/{id}", ApiMethod.GET, "application/json");
+
+            apiCallOptions.AddHeaderParameter(new ApiParameter("Authorization", token.Token));
+
+            apiCallOptions.AddPathParameter(new ApiParameter("id", project.Id.ToString()));
+
+            var response = apiClient.CallApi(apiCallOptions);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                return ServiceResponse<IReadOnlyCollection<Column>>.Fail(response.StatusCode, "Unknown server communication error occured", null);
+
+            var result = serializer.DeserializeArray(response.Content);
+
+            var columns = new List<Column>();
+
+            for (var i = 0; i < result.Count; ++i)
+            {
+                var column = result[i];
+
+                columns.Add(new Column((int)column.id, (string)column.key, (string)column.name, (string)column.type, (int)column.position));
+            }
+
+            return ServiceResponse<IReadOnlyCollection<Column>>.Success(HttpStatusCode.OK, columns);
         }
 
         #endregion

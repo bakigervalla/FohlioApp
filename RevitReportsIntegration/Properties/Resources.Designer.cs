@@ -116,6 +116,60 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Step 1/3.
+        /// </summary>
+        public static string cats_Step1 {
+            get {
+                return ResourceManager.GetString("cats_Step1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match Revit Parameter with Fohlio Parameter.
+        /// </summary>
+        public static string cats_Step1Desc {
+            get {
+                return ResourceManager.GetString("cats_Step1Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step 2/3.
+        /// </summary>
+        public static string cats_Step2 {
+            get {
+                return ResourceManager.GetString("cats_Step2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match Revit family category with Fohlio division.
+        /// </summary>
+        public static string cats_Step2Desc {
+            get {
+                return ResourceManager.GetString("cats_Step2Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step 3/3.
+        /// </summary>
+        public static string cats_Step3 {
+            get {
+                return ResourceManager.GetString("cats_Step3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match Revit family parameters with Fohlio column.
+        /// </summary>
+        public static string cats_Step3Desc {
+            get {
+                return ResourceManager.GetString("cats_Step3Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drawing report cell values.
         /// </summary>
         public static string CellValuesGenerationOperationName {
@@ -367,6 +421,15 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         public static string projects_RecentProjects {
             get {
                 return ResourceManager.GetString("projects_RecentProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to QTY Column is presented in Fohlio..
+        /// </summary>
+        public static string QTYInfo {
+            get {
+                return ResourceManager.GetString("QTYInfo", resourceCulture);
             }
         }
         

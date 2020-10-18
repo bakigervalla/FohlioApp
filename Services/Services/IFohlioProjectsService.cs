@@ -9,6 +9,8 @@ namespace Fohlio.RevitReportsIntegration.Services.Services
 
         ServiceResponse<IEnumerable<Report>> FindReports(AccessToken token, Project project);
 
+        ServiceResponse<IEnumerable<Parameter>> GetParameters(AccessToken token, Project project);
         ServiceResponse<IEnumerable<Division>> GetDivisions(AccessToken token, Project project);
+        ServiceResponse<IEnumerable<Column>> GetColumns(AccessToken token, Project project);
     }
 }

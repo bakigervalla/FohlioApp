@@ -31,6 +31,9 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
         public ICommand BackCommand { get; }
 
+        private int _windowWidth = 454;
+        public int WindowWidth { get => _windowWidth; set { _windowWidth = value; OnPropertyChanged(nameof(WindowWidth)); } }
+
         private MainBrowserViewModel()
         {
             state = BrowserState.Login;
@@ -67,11 +70,18 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
             var tasksLuncher = TasksViewModel.Instance;
             tasksLuncher.GoToModule += OnGoToModule;
+            
+            var categoriesViewModel = CategoriesViewModel.Instance;
+            categoriesViewModel.NavigateTo += OnNavigateTo;
+            categoriesViewModel.ParametersRequested += OnParametersRequested;
 
-
-
-            var divisionsViewModel = DivisionsViewModel.Instance;
+            var divisionsViewModel = FamiliesViewModel.Instance;
+            divisionsViewModel.NavigateTo += OnNavigateTo;
             divisionsViewModel.DivisionsRequested += OnDivisionsRequested;
+
+            var parametersViewModel = ParametersViewModel.Instance;
+            parametersViewModel.NavigateTo += OnNavigateTo;
+            parametersViewModel.ColumnsRequested += OnColumnsRequested;
 
 
             var container = new UnityContainer();
@@ -354,13 +364,38 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
             //            dialog.Show();
         }
 
+
         private void OnGoToModule(object sender, Project project)
         {
             State = ((Module)sender) == Module.Revit
-                ? BrowserState.Devisions
+                ? BrowserState.Categories
                 : BrowserState.ProjectsList;
 
-            DivisionsViewModel.Instance.Initialize(project);
+            WindowWidth = 600;
+            CategoriesViewModel.Instance.Initialize(project);
+        }
+
+        private void OnNavigateTo(object sender, Project project)
+        {
+            State = (BrowserState)sender;
+
+            WindowWidth = 600;
+
+            switch (state)
+            {
+                case BrowserState.Families:
+                    FamiliesViewModel.Instance.Initialize(project);
+                    break;
+
+                case BrowserState.Parameters:
+                    ParametersViewModel.Instance.Initialize(project);
+                    break;
+
+                case BrowserState.MappReport:
+                    CategoriesViewModel.Instance.Initialize(project);
+                    break;
+
+            }
         }
 
         private void OnLaunchTasks(object sender, Project project)
@@ -370,10 +405,45 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
             TasksViewModel.Instance.Initialize(project);
         }
 
+        private void OnParametersRequested(object sender, Project project)
+        {
+            if (State != BrowserState.Categories || accessToken == null)
+                return;
+
+            IsBusy = true;
+
+            ServiceResponse<IEnumerable<Parameter>> response = null;
+
+            var backgroundWorker = new BackgroundWorker();
+
+            backgroundWorker.DoWork += (o, args) =>
+            {
+                response = projectsService.GetParameters(accessToken, project);
+            };
+
+            backgroundWorker.RunWorkerCompleted += (o, args) =>
+            {
+                IsBusy = false;
+
+                if (response == null)
+                {
+                    ShowServiceCommunicationException(args.Error.Message);
+
+                    return;
+                }
+
+                if (response.IsSuccess)
+                    CategoriesViewModel.Instance.Initialize(response.Data);
+                else
+                    ShowServiceCommunicationException(response.Message);
+            };
+
+            backgroundWorker.RunWorkerAsync();
+        }
 
         private void OnDivisionsRequested(object sender, Project project)
         {
-            if (State != BrowserState.Devisions || accessToken == null)
+            if (State != BrowserState.Families || accessToken == null)
                 return;
 
             IsBusy = true;
@@ -399,7 +469,43 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
                 }
 
                 if (response.IsSuccess)
-                    DivisionsViewModel.Instance.Initialize(response.Data);
+                    FamiliesViewModel.Instance.Initialize(response.Data);
+                else
+                    ShowServiceCommunicationException(response.Message);
+            };
+
+            backgroundWorker.RunWorkerAsync();
+        }
+
+        private void OnColumnsRequested(object sender, Project project)
+        {
+            if (State != BrowserState.Parameters || accessToken == null)
+                return;
+
+            IsBusy = true;
+
+            ServiceResponse<IEnumerable<Column>> response = null;
+
+            var backgroundWorker = new BackgroundWorker();
+
+            backgroundWorker.DoWork += (o, args) =>
+            {
+                response = projectsService.GetColumns(accessToken, project);
+            };
+
+            backgroundWorker.RunWorkerCompleted += (o, args) =>
+            {
+                IsBusy = false;
+
+                if (response == null)
+                {
+                    ShowServiceCommunicationException(args.Error.Message);
+
+                    return;
+                }
+
+                if (response.IsSuccess)
+                    ParametersViewModel.Instance.Initialize(response.Data);
                 else
                     ShowServiceCommunicationException(response.Message);
             };

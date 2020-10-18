@@ -24,10 +24,10 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
         private TasksViewModel()
         {
             SwitchCommand = new RelayCommand<int>( (p) => ModuleType = (Module)p);
-            NextCommand = new RelayCommand( Naviate);
+            NextCommand = new RelayCommand(Navigate);
         }
 
-        private void Naviate()
+        private void Navigate()
         {
             if (ModuleType != Module.None)
                 GoToModule?.Invoke(ModuleType, Project);

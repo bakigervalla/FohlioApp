@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Fohlio.RevitReportsIntegration.Views
 {
     /// <summary>
-    /// Interaction logic for MappControl.xaml
+    /// Interaction logic for CategoriesControl.xaml
     /// </summary>
-    public partial class DivisionsControl : UserControl
+    public partial class CategoriesControl : UserControl
     {
-        public DivisionsControl()
+        public CategoriesControl()
         {
             InitializeComponent();
         }

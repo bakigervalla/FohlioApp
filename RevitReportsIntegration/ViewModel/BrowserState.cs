@@ -11,8 +11,14 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
         RevitProjects,
 
         Tasks,
+
+        Categories,
         
-        Devisions
+        Families,
+
+        Parameters,
+
+        MappReport,
 
     }
 

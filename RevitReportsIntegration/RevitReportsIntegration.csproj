@@ -134,6 +134,7 @@
     <Compile Include="ViewModel\BrowserState.cs" />
     <Compile Include="ViewModel\CurrentActionBrowserViewModel.cs" />
     <Compile Include="ViewModel\DialogViewModelBase.cs" />
+    <Compile Include="ViewModel\CategoriesViewModel.cs" />
     <Compile Include="ViewModel\EventArguments\DialogCloseEventArgs.cs" />
     <Compile Include="ViewModel\EventArguments\ImportReportsEventArgs.cs" />
     <Compile Include="ViewModel\EventArguments\LaunchReportsImportRequestedEventArgs.cs" />
@@ -141,14 +142,16 @@
     <Compile Include="ViewModel\EventArguments\MainBrowserStateChangedEventArgs.cs" />
     <Compile Include="ViewModel\EventArguments\PdfImportSettingsPromptEventArgs.cs" />
     <Compile Include="ViewModel\EventArguments\SelectProjectEventArgs.cs" />
+    <Compile Include="ViewModel\ParametersViewModel.cs" />
     <Compile Include="ViewModel\LoginBrowserViewModel.cs" />
     <Compile Include="ViewModel\MainBrowserViewModel.cs" />
-    <Compile Include="ViewModel\DivisionsViewModel.cs" />
+    <Compile Include="ViewModel\FamiliesViewModel.cs" />
     <Compile Include="ViewModel\Mvvm\Converters\BitmapToImageSourceConverter.cs" />
     <Compile Include="ViewModel\Mvvm\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModel\Mvvm\Converters\EnumBooleanConverter.cs" />
     <Compile Include="ViewModel\Mvvm\Converters\EnumToVisibilityConverter.cs" />
     <Compile Include="ViewModel\Mvvm\Converters\InversedBooleanConverter.cs" />
+    <Compile Include="ViewModel\Mvvm\Converters\NullVisibilityConverter.cs" />
     <Compile Include="ViewModel\Mvvm\IDialogViewModel.cs" />
     <Compile Include="ViewModel\Mvvm\IExecuteWithObject.cs" />
     <Compile Include="ViewModel\Mvvm\IExecuteWithObjectAndResult.cs" />
@@ -173,7 +176,7 @@
     <Compile Include="Views\ActionTitleControl.xaml.cs">
       <DependentUpon>ActionTitleControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BackControl.xaml.cs">
+    <Compile Include="Views\Controls\BackControl.xaml.cs">
       <DependentUpon>BackControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BackgroundWorker\MultiOperationFormProgress.cs">
@@ -187,14 +190,26 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Views\BackgroundWorker\TextProgressStyle.cs" />
+    <Compile Include="Views\CategoriesControl.xaml.cs">
+      <DependentUpon>CategoriesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MultipleChoiceFilter.xaml.cs">
+      <DependentUpon>MultipleChoiceFilter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LogoControl.xaml.cs">
       <DependentUpon>LogoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DivisionsControl.xaml.cs">
-      <DependentUpon>DivisionsControl.xaml</DependentUpon>
+    <Compile Include="Views\FamiliesControl.xaml.cs">
+      <DependentUpon>FamiliesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapReportControl.xaml.cs">
+      <DependentUpon>MapReportControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ParametersControl.xaml.cs">
+      <DependentUpon>ParametersControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PdfSettingsDialogWindow.xaml.cs">
       <DependentUpon>PdfSettingsDialogWindow.xaml</DependentUpon>
@@ -269,9 +284,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\BackControl.xaml">
+    <Page Include="Views\Controls\BackControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CategoriesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MultipleChoiceFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\LoginControl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -281,7 +304,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\DivisionsControl.xaml">
+    <Page Include="Views\FamiliesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MapReportControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ParametersControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -321,7 +352,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Resources\DataGridStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Resources\FlatComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Resources\DataGridComboBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
