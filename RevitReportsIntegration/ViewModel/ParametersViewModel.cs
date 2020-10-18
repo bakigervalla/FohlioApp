@@ -29,11 +29,13 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
         private ParametersViewModel()
         {
-            NextCommand = new RelayCommand(() => NavigateTo?.Invoke(BrowserState.MappReport, Project));
+            NextCommand = new RelayCommand(() => NavigateTo?.Invoke(BrowserState.Completed, Project));
         }
 
         public void Initialize(Project project)
         {
+            Project = project;
+
             ColumnsRequested?.Invoke(this, project);
         }
 

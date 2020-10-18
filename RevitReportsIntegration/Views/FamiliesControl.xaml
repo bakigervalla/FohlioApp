@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Fohlio.RevitReportsIntegration.Views"
              xmlns:Custom="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
-             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:p="clr-namespace:Fohlio.RevitReportsIntegration.Properties"
              xmlns:cnt="clr-namespace:Fohlio.RevitReportsIntegration.Controls"
              xmlns:dgx="urn:tom-englert.de/DataGridExtensions"
@@ -32,7 +31,7 @@
     <Grid Margin="20,0" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="90" />
         </Grid.RowDefinitions>
 
@@ -69,9 +68,11 @@
             </DataGrid>
         </DockPanel>
 
-        <StackPanel Orientation="Horizontal" Height="40" Grid.Row="1">
-            <ContentControl Focusable="False" Content="{StaticResource InfoIcon}" Height="13" />
-            <Label Content="{x:Static p:Resources.QTYInfo}" VerticalAlignment="Center" FontSize="12px" FontWeight="DemiBold" Foreground="#404040" />
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <TextBlock Text="{x:Static p:Resources.div_SelectedFamilies}" VerticalAlignment="Center" FontSize="12px" FontWeight="DemiBold" Foreground="#D32F2F"
+                       Margin="0 13 0 6"/>
+            <TextBlock Text="{x:Static p:Resources.div_Note}" VerticalAlignment="Center" FontSize="12px" Foreground="#404040" 
+                       TextWrapping="Wrap" LineHeight="18" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Margin="0,10,0,5" HorizontalAlignment="Right" Orientation="Horizontal">

@@ -299,4 +299,52 @@ reports</value>
   <data name="cats_Step3Desc" xml:space="preserve">
     <value>Match Revit family parameters with Fohlio column</value>
   </data>
+  <data name="col_SelectedParameters" xml:space="preserve">
+    <value>{X} selected parameters are not matched.</value>
+  </data>
+  <data name="div_Note" xml:space="preserve">
+    <value>Note: If there's no matching Fohlio parameter, please create the corresponding divisions in Fohlio, then click on the sync icon on the top right. The new divisions will be available for mapping.</value>
+  </data>
+  <data name="div_SelectedFamilies" xml:space="preserve">
+    <value>{X} selected categories are not matched.</value>
+  </data>
+  <data name="ExportFamilyCategory" xml:space="preserve">
+    <value>Export Family Category</value>
+  </data>
+  <data name="FamilyName" xml:space="preserve">
+    <value>Family Name</value>
+  </data>
+  <data name="fin_DownloadXls" xml:space="preserve">
+    <value>Download xls report</value>
+  </data>
+  <data name="fin_ExportMsg" xml:space="preserve">
+    <value>You have successfully exported x items to Fohlio!</value>
+  </data>
+  <data name="fin_Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="fin_OpenFohlio" xml:space="preserve">
+    <value>Open Fohlio</value>
+  </data>
+  <data name="FohlioColumn" xml:space="preserve">
+    <value>Fohlio column</value>
+  </data>
+  <data name="Parameter" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="ParameterGroup" xml:space="preserve">
+    <value>Parameter Group</value>
+  </data>
+  <data name="ParameterKind" xml:space="preserve">
+    <value>Parameter Kind</value>
+  </data>
+  <data name="ParameterName" xml:space="preserve">
+    <value>Parameter Name</value>
+  </data>
+  <data name="sum_UnmachedDesc" xml:space="preserve">
+    <value>You have {X} unmatched Revit parameter/family categories/family parameter.</value>
+  </data>
+  <data name="sum_UnmachedDescLine2" xml:space="preserve">
+    <value>To export them sucessfully, clck on "back" to change the mapping settings. Click on "next" to process without them.</value>
+  </data>
 </root>

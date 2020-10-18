@@ -179,6 +179,15 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {X} selected parameters are not matched..
+        /// </summary>
+        public static string col_SelectedParameters {
+            get {
+                return ResourceManager.GetString("col_SelectedParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to F O H L I O.
         /// </summary>
         public static string CompanyLogoPrompt {
@@ -206,11 +215,29 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Note: If there&apos;s no matching Fohlio parameter, please create the corresponding divisions in Fohlio, then click on the sync icon on the top right. The new divisions will be available for mapping..
+        /// </summary>
+        public static string div_Note {
+            get {
+                return ResourceManager.GetString("div_Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Revit Parameter.
         /// </summary>
         public static string div_RevitParameter {
             get {
                 return ResourceManager.GetString("div_RevitParameter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {X} selected categories are not matched..
+        /// </summary>
+        public static string div_SelectedFamilies {
+            get {
+                return ResourceManager.GetString("div_SelectedFamilies", resourceCulture);
             }
         }
         
@@ -269,6 +296,60 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export Family Category.
+        /// </summary>
+        public static string ExportFamilyCategory {
+            get {
+                return ResourceManager.GetString("ExportFamilyCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Family Name.
+        /// </summary>
+        public static string FamilyName {
+            get {
+                return ResourceManager.GetString("FamilyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download xls report.
+        /// </summary>
+        public static string fin_DownloadXls {
+            get {
+                return ResourceManager.GetString("fin_DownloadXls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have successfully exported x items to Fohlio!.
+        /// </summary>
+        public static string fin_ExportMsg {
+            get {
+                return ResourceManager.GetString("fin_ExportMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        public static string fin_Finish {
+            get {
+                return ResourceManager.GetString("fin_Finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Fohlio.
+        /// </summary>
+        public static string fin_OpenFohlio {
+            get {
+                return ResourceManager.GetString("fin_OpenFohlio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Fohlio_16 {
@@ -285,6 +366,15 @@ namespace Fohlio.RevitReportsIntegration.Properties {
             get {
                 object obj = ResourceManager.GetObject("Fohlio_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fohlio column.
+        /// </summary>
+        public static string FohlioColumn {
+            get {
+                return ResourceManager.GetString("FohlioColumn", resourceCulture);
             }
         }
         
@@ -385,6 +475,42 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         public static string PagePrompt {
             get {
                 return ResourceManager.GetString("PagePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter.
+        /// </summary>
+        public static string Parameter {
+            get {
+                return ResourceManager.GetString("Parameter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter Group.
+        /// </summary>
+        public static string ParameterGroup {
+            get {
+                return ResourceManager.GetString("ParameterGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter Kind.
+        /// </summary>
+        public static string ParameterKind {
+            get {
+                return ResourceManager.GetString("ParameterKind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter Name.
+        /// </summary>
+        public static string ParameterName {
+            get {
+                return ResourceManager.GetString("ParameterName", resourceCulture);
             }
         }
         
@@ -532,6 +658,24 @@ namespace Fohlio.RevitReportsIntegration.Properties {
         public static string StorageEntitySchemaId {
             get {
                 return ResourceManager.GetString("StorageEntitySchemaId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have {X} unmatched Revit parameter/family categories/family parameter..
+        /// </summary>
+        public static string sum_UnmachedDesc {
+            get {
+                return ResourceManager.GetString("sum_UnmachedDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To export them sucessfully, clck on &quot;back&quot; to change the mapping settings. Click on &quot;next&quot; to process without them..
+        /// </summary>
+        public static string sum_UnmachedDescLine2 {
+            get {
+                return ResourceManager.GetString("sum_UnmachedDescLine2", resourceCulture);
             }
         }
         

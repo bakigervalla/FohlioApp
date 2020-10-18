@@ -83,6 +83,10 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
             parametersViewModel.NavigateTo += OnNavigateTo;
             parametersViewModel.ColumnsRequested += OnColumnsRequested;
 
+            var finalViewModel = FinalViewModel.Instance;
+            finalViewModel.NavigateTo += OnNavigateTo;
+            finalViewModel.ExportFohlioRequested += OnExportFohlioRequested;
+
 
             var container = new UnityContainer();
             var apiCaller = container.Resolve<FohlioApiCaller>();
@@ -391,8 +395,8 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
                     ParametersViewModel.Instance.Initialize(project);
                     break;
 
-                case BrowserState.MappReport:
-                    CategoriesViewModel.Instance.Initialize(project);
+                case BrowserState.Completed:
+                    FinalViewModel.Instance.Initialize(project);
                     break;
 
             }
@@ -480,6 +484,42 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
         private void OnColumnsRequested(object sender, Project project)
         {
             if (State != BrowserState.Parameters || accessToken == null)
+                return;
+
+            IsBusy = true;
+
+            ServiceResponse<IEnumerable<Column>> response = null;
+
+            var backgroundWorker = new BackgroundWorker();
+
+            backgroundWorker.DoWork += (o, args) =>
+            {
+                response = projectsService.GetColumns(accessToken, project);
+            };
+
+            backgroundWorker.RunWorkerCompleted += (o, args) =>
+            {
+                IsBusy = false;
+
+                if (response == null)
+                {
+                    ShowServiceCommunicationException(args.Error.Message);
+
+                    return;
+                }
+
+                if (response.IsSuccess)
+                    ParametersViewModel.Instance.Initialize(response.Data);
+                else
+                    ShowServiceCommunicationException(response.Message);
+            };
+
+            backgroundWorker.RunWorkerAsync();
+        }
+
+        private void OnExportFohlioRequested(object sender, Project project)
+        {
+            if (State != BrowserState.Completed || accessToken == null)
                 return;
 
             IsBusy = true;

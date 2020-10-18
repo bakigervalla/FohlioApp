@@ -60,6 +60,11 @@
                        DockPanel.Dock="Top" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}">
                 <local:ParametersControl/>
             </DockPanel>
+            <DockPanel Visibility="{Binding Path=State, Source={x:Static vm:MainBrowserViewModel.Instance}, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static vm:BrowserState.Completed}}"
+                       DockPanel.Dock="Top" IsEnabled="{Binding IsBusy, Converter={StaticResource InversedBooleanConverter}}">
+                <local:FinalControl/>
+            </DockPanel>
+            
         </Grid>
     </Grid>
 </UserControl>

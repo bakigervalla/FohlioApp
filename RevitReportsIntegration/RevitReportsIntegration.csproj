@@ -142,6 +142,8 @@
     <Compile Include="ViewModel\EventArguments\MainBrowserStateChangedEventArgs.cs" />
     <Compile Include="ViewModel\EventArguments\PdfImportSettingsPromptEventArgs.cs" />
     <Compile Include="ViewModel\EventArguments\SelectProjectEventArgs.cs" />
+    <Compile Include="ViewModel\FinalViewModel.cs" />
+    <Compile Include="ViewModel\Mvvm\Converters\InversedBooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModel\ParametersViewModel.cs" />
     <Compile Include="ViewModel\LoginBrowserViewModel.cs" />
     <Compile Include="ViewModel\MainBrowserViewModel.cs" />
@@ -205,8 +207,8 @@
     <Compile Include="Views\FamiliesControl.xaml.cs">
       <DependentUpon>FamiliesControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MapReportControl.xaml.cs">
-      <DependentUpon>MapReportControl.xaml</DependentUpon>
+    <Compile Include="Views\FinalControl.xaml.cs">
+      <DependentUpon>FinalControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ParametersControl.xaml.cs">
       <DependentUpon>ParametersControl.xaml</DependentUpon>
@@ -308,7 +310,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MapReportControl.xaml">
+    <Page Include="Views\FinalControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

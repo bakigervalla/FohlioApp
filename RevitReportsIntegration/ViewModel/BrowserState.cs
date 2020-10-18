@@ -18,7 +18,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
         Parameters,
 
-        MappReport,
+        Completed,
 
     }
 

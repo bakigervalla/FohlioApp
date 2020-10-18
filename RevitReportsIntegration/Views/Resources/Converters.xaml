@@ -3,6 +3,7 @@
                     xmlns:converters="clr-namespace:Fohlio.RevitReportsIntegration.ViewModel.Mvvm.Converters">
     <converters:EnumBooleanConverter x:Key="EnumBooleanConverter" />
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <converters:InversedBooleanToVisibilityConverter x:Key="InversedBooleanToVisibilityConverter" />
     <converters:BitmapToImageSourceConverter x:Key="BitmapToImageSourceConverter" />
     <converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
     <converters:InversedBooleanConverter x:Key="InversedBooleanConverter" />
