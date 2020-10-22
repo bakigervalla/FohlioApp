@@ -13,7 +13,7 @@ namespace Fohlio.RevitReportsIntegration.Services.RestApi
         public FohlioApiCaller()
         {
 #if DEBUG
-            const string baseUrl = "https://test.fohlio.com/";
+            const string baseUrl = "https://testux.fohlio.com/";
 #else
             var baseUrl = System.Configuration.ConfigurationManager.OpenExeConfiguration(GetType().Assembly.Location).AppSettings.Settings["ServiceAddress"].Value; 
 #endif

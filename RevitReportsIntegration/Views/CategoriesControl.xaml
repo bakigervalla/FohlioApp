@@ -37,7 +37,7 @@
         </Grid.RowDefinitions>
 
         <DockPanel>
-            <DataGrid ItemsSource="{Binding Categories, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False"
+            <DataGrid ItemsSource="{Binding Areas, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False"
                       HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto"
                       dgx:DataGridFilter.IsAutoFilterEnabled="True" RowHeaderWidth="0"
                       GridLinesVisibility="None">
@@ -57,7 +57,7 @@
                                                    dgx:DataGridFilterColumn.Template="{StaticResource MultipleChoiceFilter}">
                         <Custom:DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding DataContext.Categories, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, 
+                                <ComboBox ItemsSource="{Binding DataContext.Areas, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, 
                                           RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
                                           SelectedValuePath="Id" DisplayMemberPath="Name" IsEditable="True"
                                           HorizontalAlignment="Stretch" />

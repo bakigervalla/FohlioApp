@@ -28,7 +28,6 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
         private bool isBusy;
         private AccessToken accessToken;
 
-
         public ICommand BackCommand { get; }
 
         private int _windowWidth = 454;
@@ -38,7 +37,11 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
         {
             state = BrowserState.Login;
 
-            BackCommand = new RelayCommand(() => State--);
+            BackCommand = new RelayCommand(() =>
+            {
+                State--;
+                if (State == BrowserState.Tasks | State == BrowserState.Login) WindowWidth = 454;
+            });
 
             LoginBrowserViewModel.Instance.LoginRequested += OnLoginRequested;
 
@@ -70,10 +73,10 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
             var tasksLuncher = TasksViewModel.Instance;
             tasksLuncher.GoToModule += OnGoToModule;
-            
+
             var categoriesViewModel = CategoriesViewModel.Instance;
             categoriesViewModel.NavigateTo += OnNavigateTo;
-            categoriesViewModel.ParametersRequested += OnParametersRequested;
+            categoriesViewModel.AreasRequested += OnAreasRequested;
 
             var divisionsViewModel = FamiliesViewModel.Instance;
             divisionsViewModel.NavigateTo += OnNavigateTo;
@@ -346,6 +349,13 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
             State = BrowserState.Login;
         }
 
+        public void Logout()
+        {
+            accessToken = null;
+            State = BrowserState.Login;
+            WindowWidth = 454;
+        }
+
         private static void ShowServiceCommunicationException(string message)
         {
             MessageBox.Show(message, Resources.ErrorDialogCaption, MessageBoxButton.OK, MessageBoxImage.Error);
@@ -409,20 +419,20 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
             TasksViewModel.Instance.Initialize(project);
         }
 
-        private void OnParametersRequested(object sender, Project project)
+        private void OnAreasRequested(object sender, Project project)
         {
             if (State != BrowserState.Categories || accessToken == null)
                 return;
 
             IsBusy = true;
 
-            ServiceResponse<IEnumerable<Parameter>> response = null;
+            ServiceResponse<IEnumerable<Area>> response = null;
 
             var backgroundWorker = new BackgroundWorker();
 
             backgroundWorker.DoWork += (o, args) =>
             {
-                response = projectsService.GetParameters(accessToken, project);
+                response = projectsService.GetAreas(accessToken, project);
             };
 
             backgroundWorker.RunWorkerCompleted += (o, args) =>

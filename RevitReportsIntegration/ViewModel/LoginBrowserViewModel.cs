@@ -57,7 +57,7 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
 
         private void LoginDebug(object pwdControl)
         {
-            LoginRequested?.Invoke(this, new LoginRequestedEventArgs("bakigervalla@gmail.com", "orion857"));
+            LoginRequested?.Invoke(this, new LoginRequestedEventArgs("bakigervalla@gmail.com.beta", "orion857"));
         }
     }
 }

@@ -102,6 +102,41 @@ namespace Fohlio.RevitReportsIntegration.Services.Services.Implementation
 
         #region Export Fohlio
 
+        public ServiceResponse<IEnumerable<Area>> GetAreas(AccessToken token, Project project)
+
+        {
+            var areas = FetchAreas(token, project).Data;
+
+            return ServiceResponse<IEnumerable<Area>>.Success(HttpStatusCode.OK, areas);
+        }
+
+        private ServiceResponse<IReadOnlyCollection<Area>> FetchAreas(AccessToken token, Project project)
+        {
+            var apiCallOptions = new ApiCallQuery("/openapi/projects/{id}/areas", ApiMethod.GET, "application/json");
+
+            apiCallOptions.AddHeaderParameter(new ApiParameter("Authorization", token.Token));
+
+            apiCallOptions.AddPathParameter(new ApiParameter("id", project.Id.ToString()));
+
+            var response = apiClient.CallApi(apiCallOptions);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                return ServiceResponse<IReadOnlyCollection<Area>>.Fail(response.StatusCode, "Unknown server communication error occured", null);
+
+            var result = serializer.DeserializeArray(response.Content);
+
+            var areas = new List<Area>();
+
+            for (var i = 0; i < result.Count; ++i)
+            {
+                var area = result[i];
+
+                areas.Add(new Area((int)area.id, (string)area.name, (int)area.position, (int)area.layer_id, (int)area.project_id, (bool)area.is_used));
+            }
+
+            return ServiceResponse<IReadOnlyCollection<Area>>.Success(HttpStatusCode.OK, areas);
+        }
+
         public ServiceResponse<IEnumerable<Parameter>> GetParameters(AccessToken token, Project project)
         {
             var parameters = FetchParameters(token, project).Data;

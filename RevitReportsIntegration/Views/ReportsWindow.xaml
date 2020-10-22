@@ -4,8 +4,8 @@
         xmlns:local="clr-namespace:Fohlio.RevitReportsIntegration.Views"
         xmlns:vm="clr-namespace:Fohlio.RevitReportsIntegration.ViewModel"
         DataContext="{Binding Source={x:Static vm:MainBrowserViewModel.Instance}}"
-        Height="820" Width="{Binding WindowWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-        WindowStartupLocation="CenterScreen"
+        Height="820" Width="{Binding WindowWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        WindowStartupLocation="CenterScreen" Closed="Window_Closed"
         >
 
     <DockPanel x:Name="MainPane">

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Fohlio.RevitReportsIntegration.ViewModel;
+using System.Windows;
 
 namespace Fohlio.RevitReportsIntegration.Views
 {
@@ -20,5 +21,10 @@ namespace Fohlio.RevitReportsIntegration.Views
             this.Left = ((SystemParameters.WorkArea.Width - Width) / 2) + SystemParameters.WorkArea.Left;
         }
 
+        private void Window_Closed(object sender, System.EventArgs e)
+        {
+            var viewModel = (MainBrowserViewModel)this.DataContext;
+            viewModel.Logout();
+        }
     }
 }

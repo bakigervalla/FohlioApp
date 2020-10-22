@@ -12,10 +12,10 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
         private static readonly Lazy<CategoriesViewModel> InstanceObj = new Lazy<CategoriesViewModel>(() => new CategoriesViewModel());
         public event EventHandler<Project> NavigateTo;
 
-        public event EventHandler<Project> ParametersRequested;
+        public event EventHandler<Project> AreasRequested;
 
-        private IList<Parameter> _categories;
-        public IList<Parameter> Categories { get => _categories; set { _categories = value; OnPropertyChanged(nameof(Categories)); } }
+        private IList<Area> _areas;
+        public IList<Area> Areas { get => _areas; set { _areas = value; OnPropertyChanged(nameof(Areas)); } }
 
         public static CategoriesViewModel Instance = InstanceObj.Value;
 
@@ -33,12 +33,12 @@ namespace Fohlio.RevitReportsIntegration.ViewModel
         {
             Project = project;
 
-            ParametersRequested?.Invoke(this, project);
+            AreasRequested?.Invoke(this, project);
         }
 
-        public void Initialize(IEnumerable<Parameter> categories)
+        public void Initialize(IEnumerable<Area> areas)
         {
-            Categories = categories.ToList();
+            Areas = areas.ToList();
         }
 
     }
